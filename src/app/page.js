@@ -15,9 +15,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <Navbar />
+      {/* <Navbar /> */}
       {/* <Button/> */}
-      <Button />
+      {/* <Button /> */}
       <Hero />
       <Services />
       <Projects />
@@ -27,7 +27,7 @@ export default function Home() {
       <TechStack />
       <Pricing />
       <Contact />
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

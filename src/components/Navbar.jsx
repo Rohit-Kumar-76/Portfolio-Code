@@ -2,10 +2,24 @@
 
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { FiHome, FiUser, FiBriefcase, FiFolder, FiMail } from "react-icons/fi";
+import {
+    FiHome,
+    FiUser,
+    FiBriefcase,
+    FiFolder,
+    FiMail,
+} from "react-icons/fi";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
+
+    const menu = [
+        { icon: <FiHome />, text: "Home", link: "/" },
+        { icon: <FiUser />, text: "About", link: "/about" },
+        { icon: <FiBriefcase />, text: "Services", link: "/services" },
+        { icon: <FiFolder />, text: "Projects", link: "/projects" },
+        { icon: <FiMail />, text: "Contact", link: "/contact" },
+    ];
 
     return (
         <nav className="bg-[#0a192f] text-white shadow-lg border-b border-[#1f3a5f] sticky top-0 z-50">
@@ -24,15 +38,24 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex gap-8 items-center">
-                    <NavLink icon={<FiHome />} text="Home" />
-                    <NavLink icon={<FiUser />} text="About" />
-                    <NavLink icon={<FiBriefcase />} text="Services" />
-                    <NavLink icon={<FiFolder />} text="Projects" />
-                    <NavLink icon={<FiMail />} text="Contact" />
 
-                    <button className="border border-teal-300 text-teal-300 px-4 py-1 rounded hover:bg-teal-300 hover:text-[#0a192f] transition">
+                    {menu.map((item, i) => (
+                        <a
+                            key={i}
+                            href={item.link}
+                            className="flex items-center gap-2 hover:text-teal-300 transition"
+                        >
+                            {item.icon}
+                            {item.text}
+                        </a>
+                    ))}
+
+                    <a
+                        href="#contact"
+                        className="border border-teal-300 text-teal-300 px-4 py-1 rounded hover:bg-teal-300 hover:text-[#0a192f] transition"
+                    >
                         Contact Us
-                    </button>
+                    </a>
                 </div>
 
                 {/* Hamburger */}
@@ -44,19 +67,19 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* 🔥 Overlay */}
+            {/* Overlay */}
             <div
                 className={`fixed inset-0 bg-black/50 transition-opacity duration-300 ${open ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={() => setOpen(false)}
             ></div>
 
-            {/* 🔥 Left Sidebar */}
+            {/* Sidebar */}
             <div
                 className={`fixed top-0 left-0 h-full w-[260px] bg-[#112240] shadow-lg transform transition-transform duration-300 z-50 ${open ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
-                {/* Close Button */}
+                {/* Close */}
                 <div className="flex justify-end p-4">
                     <FaTimes
                         className="text-2xl cursor-pointer"
@@ -67,28 +90,28 @@ export default function Navbar() {
                 {/* Menu */}
                 <div className="flex flex-col gap-6 px-6 mt-4">
 
-                    <NavLink icon={<FiHome />} text="Home" />
-                    <NavLink icon={<FiUser />} text="About" />
-                    <NavLink icon={<FiBriefcase />} text="Services" />
-                    <NavLink icon={<FiFolder />} text="Projects" />
-                    <NavLink icon={<FiMail />} text="Contact" />
+                    {menu.map((item, i) => (
+                        <a
+                            key={i}
+                            href={item.link}
+                            onClick={() => setOpen(false)}
+                            className="flex items-center gap-3 text-lg hover:text-teal-300 transition"
+                        >
+                            {item.icon}
+                            {item.text}
+                        </a>
+                    ))}
 
-                    <button className="mt-4 border border-teal-300 text-teal-300 px-4 py-2 rounded hover:bg-teal-300 hover:text-[#0a192f] transition">
+                    <a
+                        href="#contact"
+                        onClick={() => setOpen(false)}
+                        className="mt-4 border border-teal-300 text-teal-300 px-4 py-2 rounded text-center hover:bg-teal-300 hover:text-[#0a192f] transition"
+                    >
                         Contact Us
-                    </button>
+                    </a>
 
                 </div>
             </div>
         </nav>
-    );
-}
-
-/* 🔥 Reusable Link */
-function NavLink({ icon, text }) {
-    return (
-        <a href="#" className="flex items-center gap-2 hover:text-teal-300">
-            {icon}
-            {text}
-        </a>
     );
 }
