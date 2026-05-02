@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FaUser, FaEnvelope, FaPhone, FaCommentDots, FaTimes } from "react-icons/fa";
+
+import FormModal from "@/components/FormModal";
 
 export default function Projects() {
     const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function Projects() {
 
                 {/* Heading */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-teal-300">
+                    <h2 className="text-3xl md:text-4xl font-bold text-cyan-300">
                         My Projects
                     </h2>
                     <p className="text-gray-400 mt-3">
@@ -59,7 +60,7 @@ export default function Projects() {
                     {projects.map((project, i) => (
                         <div
                             key={i}
-                            className="bg-[#112240] p-1 rounded-xl border border-[#1f3a5f] hover:border-teal-300 transition group"
+                            className="bg-[#112240] p-1 rounded-xl border border-[#1f3a5f] hover:border-cyan-300 transition group"
                         >
 
                             {/* ✅ FIXED IMAGE */}
@@ -87,10 +88,11 @@ export default function Projects() {
                                 {/* Button */}
                                 <button
                                     onClick={() => setOpen(true)}
-                                    className="bg-teal-300 text-[#0a192f] px-4 py-1 rounded text-sm mt-3 hover:opacity-80 cursor-pointer"
+                                    className="bg-cyan-400 text-[#0a192f] text-white px-4 py-2 rounded text-md mt-3 hover:opacity-80 cursor-pointer"
                                 >
                                     View Demo
                                 </button>
+
 
                             </div>
                         </div>
@@ -100,59 +102,11 @@ export default function Projects() {
             </div>
 
             {/* 🔥 MODAL */}
-            {open && (
-                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+            <FormModal open={open} onClose={() => setOpen(false)} />
 
-                    <div className="bg-[#112240] p-6 rounded-xl w-[90%] max-w-md border border-[#1f3a5f] relative">
 
-                        <FaTimes
-                            className="absolute top-4 right-4 cursor-pointer text-gray-300 hover:text-white"
-                            onClick={() => setOpen(false)}
-                        />
-
-                        <h3 className="text-xl font-semibold text-teal-300 mb-6 text-center">
-                            Get Demo Access
-                        </h3>
-
-                        <form className="space-y-4">
-
-                            <Input icon={<FaUser />} placeholder="Your Name" />
-                            <Input icon={<FaEnvelope />} placeholder="Your Email" />
-                            <Input icon={<FaPhone />} placeholder="Mobile Number" />
-
-                            <div className="flex items-start gap-3 bg-[#0a192f] border border-[#1f3a5f] rounded px-3">
-                                <FaCommentDots className="text-teal-300 mt-4" />
-                                <textarea
-                                    placeholder="Purpose (What you need?)"
-                                    rows="3"
-                                    className="w-full p-3 bg-transparent outline-none resize-none"
-                                />
-                            </div>
-
-                            <button className="w-full bg-teal-300 text-[#0a192f] py-2 rounded hover:opacity-80 cursor-pointer">
-                                Submit & View Demo
-                            </button>
-
-                        </form>
-
-                    </div>
-                </div>
-            )}
 
         </section>
     );
 }
 
-/* 🔧 Reusable Input */
-function Input({ icon, placeholder }) {
-    return (
-        <div className="flex items-center gap-3 bg-[#0a192f] border border-[#1f3a5f] rounded px-3">
-            <span className="text-teal-300">{icon}</span>
-            <input
-                type="text"
-                placeholder={placeholder}
-                className="w-full p-3 bg-transparent outline-none"
-            />
-        </div>
-    );
-}

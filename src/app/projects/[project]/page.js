@@ -17,7 +17,7 @@ export default function ProjectPage() {
         "1": <BusinessWebsite />,
         "2": <CafeWebsite />,
         "3": <SchoolWebsite />,
-        // "4": <Portfolio />,
+        "6": <Portfolio />,
         "5": <CustomWebApp />,
         "4": <GymWebsite />,
     };

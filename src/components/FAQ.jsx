@@ -34,7 +34,7 @@ export default function FAQ() {
             <div className="max-w-4xl mx-auto px-6">
 
                 {/* Heading */}
-                <h2 className="text-3xl md:text-4xl font-bold text-teal-300 text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-cyan-300 text-center mb-12">
                     Frequently Asked Questions
                 </h2>
 
@@ -55,7 +55,7 @@ export default function FAQ() {
                                 <span className="font-medium">{faq.question}</span>
 
                                 <FiChevronDown
-                                    className={`transition-transform duration-300 ${active === i ? "rotate-180 text-teal-300" : ""
+                                    className={`transition-transform duration-300 ${active === i ? "rotate-180 text-cyan-300" : ""
                                         }`}
                                 />
                             </button>

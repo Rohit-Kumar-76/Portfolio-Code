@@ -70,7 +70,7 @@ export default function Services() {
                     {/* LEFT */}
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                            Our <span className="text-teal-300">Services</span>
+                            Our <span className="text-cyan-300">Services</span>
                         </h2>
 
                         <p className="text-gray-400 mb-4">
@@ -99,7 +99,7 @@ export default function Services() {
 
                     {/* RIGHT IMAGE */}
                     <div className="flex justify-center relative">
-                        <div className="absolute w-[250px] h-[250px] bg-teal-300/10 blur-3xl rounded-full"></div>
+                        <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
                         <img
                             src="/illustration/service.svg"
@@ -116,11 +116,11 @@ export default function Services() {
                         <div
                             key={i}
                             style={{ animationDelay: `${i * 0.1}s` }}
-                            className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-teal-300 hover:-translate-y-2 transition-all duration-300 group animate-fadeUp"
+                            className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-cyan-300 hover:-translate-y-2 transition-all duration-300 group animate-fadeUp"
                         >
 
                             {/* ICON */}
-                            <div className="text-teal-300 text-3xl mb-4 group-hover:scale-110 transition">
+                            <div className="text-cyan-300 text-3xl mb-4 group-hover:scale-110 transition">
                                 {service.icon}
                             </div>
 
@@ -138,7 +138,7 @@ export default function Services() {
                             <ul className="space-y-2 text-sm text-gray-300 mb-4">
                                 {service.features.map((f, idx) => (
                                     <li key={idx} className="flex items-center gap-2">
-                                        <FaCheckCircle className="text-teal-300 text-xs" />
+                                        <FaCheckCircle className="text-cyan-300 text-xs" />
                                         {f}
                                     </li>
                                 ))}
@@ -147,7 +147,7 @@ export default function Services() {
                             {/* CTA */}
                             <a
                                 href={`/services/service/${i + 1}`}
-                                className="flex items-center gap-2 text-teal-300 text-sm hover:gap-3 transition cursor-pointer"
+                                className="flex items-center gap-2 text-cyan-300 text-sm hover:gap-3 transition cursor-pointer"
                             >
                                 Learn More <FaArrowRight />
                             </a>

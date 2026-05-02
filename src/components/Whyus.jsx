@@ -28,7 +28,7 @@ export function WhyChoose() {
         <section className="bg-[#112240] text-white py-24">
             <div className="max-w-7xl mx-auto px-6 text-center">
 
-                <h2 className="text-3xl md:text-4xl font-bold text-teal-300 mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-cyan-300 mb-12">
                     Why Choose Us
                 </h2>
 
@@ -37,11 +37,11 @@ export function WhyChoose() {
                     {points.map((item, i) => (
                         <div
                             key={i}
-                            className="bg-[#0a192f] p-6 rounded-xl border border-[#1f3a5f] hover:border-teal-300 hover:shadow-lg hover:shadow-teal-300/10 transition flex flex-col items-center text-center"
+                            className="bg-[#0a192f] p-6 rounded-xl border border-[#1f3a5f] hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-300/10 transition flex flex-col items-center text-center"
                         >
 
                             {/* 🔥 ICON CENTER */}
-                            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#112240] text-teal-300 text-xl mb-4">
+                            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#112240] text-cyan-300 text-xl mb-4">
                                 {item.icon}
                             </div>
 

@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+.theme-color {
+    color: #2e5df5;
+    ;
+}
+
+/* .text-cyan-100 {
+    color: #2e5df5;
+}
+.text-cyan-200 {
+    color: #2e5df5;
+} */
+
+
 
 
 /* ================= FADE UP ================= */

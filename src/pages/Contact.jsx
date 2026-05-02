@@ -15,7 +15,7 @@ export default function Contact() {
 
                     {/* LEFT TEXT */}
                     <div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-teal-300 mb-4">
+                        <h2 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
                             Let’s Build Something Amazing
                         </h2>
 
@@ -39,7 +39,7 @@ export default function Contact() {
 
                     {/* RIGHT IMAGE */}
                     <div className="flex justify-center relative">
-                        <div className="absolute w-[250px] h-[250px] bg-teal-300/10 blur-3xl rounded-full"></div>
+                        <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
                         <img
                             src="/illustration/call.svg"
@@ -54,8 +54,8 @@ export default function Contact() {
                 {/* 🔥 CONTACT INFO */}
                 <div className="grid md:grid-cols-3 gap-6 text-center">
 
-                    <Info icon={<FaPhone />} text="+91 0000000000" />
-                    <Info icon={<FaEnvelope />} text="your@email.com" />
+                    <Info icon={<FaPhone />} text="+91 7651893226" />
+                    <Info icon={<FaEnvelope />} text="info.trioscript@gmail.com" />
                     <Info icon={<FaWhatsapp />} text="WhatsApp Chat" />
 
                 </div>
@@ -69,8 +69,11 @@ export default function Contact() {
                     <div className="grid md:grid-cols-3 gap-6">
 
                         <Feature text="Fast Delivery" />
-                        <Feature text="Clean Code" />
+                        <Feature text="Clean & Scalable Code" />
                         <Feature text="Affordable Pricing" />
+                        <Feature text="Responsive & Modern Design" />
+                        <Feature text="Ongoing Support & Maintenance" />
+                        <Feature text="Client-Centric Approach" />
 
                     </div>
                 </div>
@@ -85,7 +88,7 @@ export default function Contact() {
 function Info({ icon, text }) {
     return (
         <div className="bg-[#112240] p-5 rounded-lg border border-[#1f3a5f] flex flex-col items-center gap-2">
-            <div className="text-teal-300 text-xl">{icon}</div>
+            <div className="text-cyan-300 text-xl">{icon}</div>
             <p className="text-gray-300 text-sm">{text}</p>
         </div>
     );
@@ -94,7 +97,7 @@ function Info({ icon, text }) {
 function Feature({ text }) {
     return (
         <div className="flex items-center justify-center gap-2 bg-[#112240] p-4 rounded-lg border border-[#1f3a5f]">
-            <FaCheckCircle className="text-teal-300" />
+            <FaCheckCircle className="text-cyan-300" />
             {text}
         </div>
     );

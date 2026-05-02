@@ -19,7 +19,7 @@ export default function CafeWebsite() {
                 {/* 🔥 HERO */}
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-teal-300 mb-4">
+                        <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
                             Cafe / Restaurant Website
                         </h1>
 
@@ -33,9 +33,7 @@ export default function CafeWebsite() {
                             to build a strong online presence.
                         </p>
 
-                        <button className="px-6 py-2 bg-teal-300 text-[#0a192f] rounded flex items-center gap-2 hover:scale-105 transition cursor-pointer">
-                            View Demo <FaArrowRight />
-                        </button>
+
                     </div>
 
                     <div className="flex justify-center">
@@ -132,12 +130,13 @@ export default function CafeWebsite() {
                         Want a website for your cafe or restaurant?
                     </h3>
 
-                    <a href="/contact-us" className="px-6 py-2 bg-teal-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer">
+                    <a href="/contact-us" className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer">
                         Start Your Project
                     </a>
                 </div>
 
             </div>
+
         </section>
     );
 }
@@ -149,7 +148,7 @@ function Section({ title, children, icon }) {
     return (
         <div>
             <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                {icon && <span className="text-teal-300">{icon}</span>}
+                {icon && <span className="text-cyan-300">{icon}</span>}
                 {title}
             </h2>
             {children}
@@ -164,7 +163,7 @@ function Grid({ children }) {
 function Feature({ text }) {
     return (
         <div className="flex items-center gap-3 bg-[#112240] p-4 rounded-lg border border-[#1f3a5f]">
-            <FaCheckCircle className="text-teal-300" />
+            <FaCheckCircle className="text-cyan-300" />
             {text}
         </div>
     );
@@ -182,7 +181,7 @@ function Box({ title, children, icon }) {
     return (
         <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <span className="text-teal-300">{icon}</span>
+                <span className="text-cyan-300">{icon}</span>
                 {title}
             </h3>
             <p className="text-gray-400">{children}</p>

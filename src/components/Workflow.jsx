@@ -37,7 +37,7 @@ export default function Workflow() {
 
                 {/* Heading */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-teal-300">
+                    <h2 className="text-3xl md:text-4xl font-bold text-cyan-300">
                         My Workflow
                     </h2>
                     <p className="text-gray-400 mt-3">
@@ -57,12 +57,12 @@ export default function Workflow() {
                             <div key={i} className="relative text-center">
 
                                 {/* Icon Circle */}
-                                <div className="w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-[#0a192f] border border-teal-300 text-teal-300 text-xl z-10 relative">
+                                <div className="w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-[#0a192f] border border-cyan-300 text-cyan-300 text-xl z-10 relative">
                                     {step.icon}
                                 </div>
 
                                 {/* Step Number */}
-                                <p className="text-teal-300 mt-3 font-semibold">
+                                <p className="text-cyan-300 mt-3 font-semibold">
                                     Step {i + 1}
                                 </p>
 

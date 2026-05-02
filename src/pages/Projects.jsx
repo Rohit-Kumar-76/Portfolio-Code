@@ -2,8 +2,16 @@
 
 import Link from "next/link";
 import { FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
+import { useState } from "react";
+import FormModal from "@/components/FormModal";
+
+
 
 const Projects = () => {
+
+    const [open, setOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState("");
+
     const projects = [
         {
             slug: "business-website",
@@ -64,7 +72,7 @@ const Projects = () => {
                     {/* LEFT */}
                     <div>
                         <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                            Our <span className="text-teal-300">Projects</span>
+                            Our <span className="text-cyan-300">Projects</span>
                         </h2>
 
                         <p className="text-gray-400 mb-4">
@@ -92,7 +100,7 @@ const Projects = () => {
 
                     {/* RIGHT */}
                     <div className="flex justify-center relative">
-                        <div className="absolute w-[250px] h-[250px] bg-teal-300/10 blur-3xl rounded-full"></div>
+                        <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
                         <img
                             src="/illustration/project.svg"
@@ -108,7 +116,7 @@ const Projects = () => {
                     {projects.map((project, i) => (
                         <div
                             key={i}
-                            className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-teal-300 hover:-translate-y-2 transition-all duration-300"
+                            className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-cyan-300 hover:-translate-y-2 transition-all duration-300"
                         >
 
                             {/* Illustration */}
@@ -134,7 +142,7 @@ const Projects = () => {
                             <ul className="space-y-2 text-sm text-gray-300 mb-4">
                                 {project.points.map((p, idx) => (
                                     <li key={idx} className="flex items-center gap-2">
-                                        <FaCheckCircle className="text-teal-300 text-xs" />
+                                        <FaCheckCircle className="text-cyan-300 text-xs" />
                                         {p}
                                     </li>
                                 ))}
@@ -145,18 +153,20 @@ const Projects = () => {
 
                                 <Link
                                     href={`/projects/${i + 1}`}
-                                    className="px-4 py-2 text-sm border border-teal-300 text-teal-300 rounded hover:bg-teal-300 hover:text-[#0a192f] transition cursor-pointer"
+                                    className="px-4 py-2 text-sm border border-cyan-300 text-cyan-300 rounded hover:bg-cyan-300 hover:text-[#0a192f] transition cursor-pointer"
                                 >
                                     View Details
                                 </Link>
 
-                                <a
-                                    href="#"
-                                    target="_blank"
-                                    className="px-4 py-2 text-sm bg-teal-300 text-[#0a192f] rounded flex items-center gap-2 hover:scale-105 transition cursor-pointer"
+                                <button
+                                    onClick={() => {
+                                        setSelectedProject(project.title);
+                                        setOpen(true);
+                                    }}
+                                    className="px-4 py-2 text-sm bg-cyan-300 text-[#0a192f] rounded flex items-center gap-2 hover:scale-105 transition cursor-pointer"
                                 >
                                     Demo <FaExternalLinkAlt />
-                                </a>
+                                </button>
 
                             </div>
 
@@ -164,7 +174,11 @@ const Projects = () => {
                     ))}
 
                 </div>
-
+                <FormModal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    projectName={selectedProject}
+                />
             </div>
         </section>
     );

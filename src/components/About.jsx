@@ -46,7 +46,7 @@ export default function About() {
                 >
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-                            About <span className="text-teal-300">WebNova</span>
+                            About <span className="text-cyan-300">TrioScript</span>
                         </h1>
 
                         <p className="text-gray-400 mb-4">
@@ -74,7 +74,7 @@ export default function About() {
                     </div>
 
                     <div className="flex justify-center relative">
-                        <div className="absolute w-[250px] h-[250px] bg-teal-300/10 blur-3xl rounded-full"></div>
+                        <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
                         <img
                             src="/illustration/teams.svg"
@@ -116,7 +116,7 @@ export default function About() {
                         }`}
                 >
                     <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
-                        <FaBullseye className="text-teal-300 text-2xl mb-3" />
+                        <FaBullseye className="text-cyan-300 text-2xl mb-3" />
                         <h3 className="font-semibold mb-2">Our Mission</h3>
                         <p className="text-gray-400 text-sm">
                             Deliver high-quality web solutions that help businesses grow online.
@@ -124,7 +124,7 @@ export default function About() {
                     </div>
 
                     <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
-                        <FaRocket className="text-teal-300 text-2xl mb-3" />
+                        <FaRocket className="text-cyan-300 text-2xl mb-3" />
                         <h3 className="font-semibold mb-2">Our Vision</h3>
                         <p className="text-gray-400 text-sm">
                             Become a trusted web development partner delivering modern solutions.
@@ -139,17 +139,17 @@ export default function About() {
                         }`}
                 >
                     <div>
-                        <h3 className="text-3xl font-bold text-teal-300">20+</h3>
+                        <h3 className="text-3xl font-bold text-cyan-300">20+</h3>
                         <p className="text-gray-400 text-sm">Projects</p>
                     </div>
 
                     <div>
-                        <h3 className="text-3xl font-bold text-teal-300">15+</h3>
+                        <h3 className="text-3xl font-bold text-cyan-300">15+</h3>
                         <p className="text-gray-400 text-sm">Clients</p>
                     </div>
 
                     <div>
-                        <h3 className="text-3xl font-bold text-teal-300">1+</h3>
+                        <h3 className="text-3xl font-bold text-cyan-300">1+</h3>
                         <p className="text-gray-400 text-sm">Years</p>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ export default function About() {
                         }`}
                 >
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
-                        <FaUsers className="text-teal-300" />
+                        <FaUsers className="text-cyan-300" />
                         Our Approach
                     </h2>
 
@@ -193,7 +193,7 @@ export default function About() {
 
                     <a
                         href="#contact"
-                        className="inline-block px-6 py-2 bg-teal-300 text-[#0a192f] rounded hover:scale-105 transition"
+                        className="inline-block px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition"
                     >
                         Start Your Project
                     </a>

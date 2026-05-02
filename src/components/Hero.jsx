@@ -5,21 +5,21 @@ export default function Hero() {
         <section className="bg-[#0a192f] text-white min-h-screen flex items-center relative overflow-hidden">
 
             {/* 🔥 Glow Background */}
-            <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-teal-300/10 blur-3xl rounded-full"></div>
-            <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-teal-300/10 blur-3xl rounded-full"></div>
+            <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div>
+            <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
             <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
 
                 {/* Left Content */}
                 <div>
 
-                    <h2 className="text-teal-300 text-lg mb-3">
-                        Hi, I'm WebNova 👋
+                    <h2 className="text-cyan-300 text-lg mb-3">
+                        Hi, I'm TrioScript 👋
                     </h2>
 
                     <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-5">
                         I build modern <br />
-                        <span className="text-teal-300">
+                        <span className="text-cyan-300">
                             Web Experiences
                         </span>
                     </h1>
@@ -32,13 +32,13 @@ export default function Hero() {
 
                     {/* Buttons */}
                     <div className="flex flex-wrap gap-4">
-                        <button className="cursor-pointer bg-teal-300 text-[#0a192f] px-6 py-2 rounded-md font-medium hover:scale-105 transition duration-300 shadow-md">
+                        <a href="/projects" className="cursor-pointer bg-cyan-300 text-[#0a192f] px-6 py-2 rounded-md font-medium hover:scale-105 transition duration-300 shadow-md">
                             View Projects
-                        </button>
+                        </a>
 
-                        <button className="cursor-pointer border border-teal-300 text-teal-300 px-6 py-2 rounded-md hover:bg-teal-300 hover:text-[#0a192f] transition duration-300">
+                        <a href="/contact-us" className="cursor-pointer border border-cyan-300 text-cyan-300 px-6 py-2 rounded-md hover:bg-cyan-300 hover:text-[#0a192f] transition duration-300">
                             Contact Us
-                        </button>
+                        </a>
                     </div>
 
                 </div>
@@ -47,7 +47,7 @@ export default function Hero() {
                 <div className="flex justify-center relative">
 
                     {/* Glow */}
-                    <div className="absolute w-[250px] h-[250px] bg-teal-300/10 blur-3xl rounded-full"></div>
+                    <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
                     <img
                         src="/illustration/hero1.png" // 👉 local use kar (best)

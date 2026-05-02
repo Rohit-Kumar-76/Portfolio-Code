@@ -53,7 +53,7 @@ export default function Testimonials() {
         <section className="bg-[#0a192f] text-white py-24">
             <div className="max-w-7xl mx-auto px-6 text-center">
 
-                <h2 className="text-3xl md:text-4xl font-bold text-teal-300 mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-cyan-300 mb-12">
                     What Clients Say
                 </h2>
 
@@ -71,14 +71,14 @@ export default function Testimonials() {
                                 className="w-full md:w-1/3 px-4 flex-shrink-0"
                             >
                                 {/* 🔥 Equal Height Card */}
-                                <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-teal-300 transition h-[180px] flex flex-col justify-between">
+                                <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f] hover:border-cyan-300 transition h-[180px] flex flex-col justify-between">
 
                                     <p className="text-gray-300 text-sm line-clamp-3">
                                         "{t.text}"
                                     </p>
 
                                     <div>
-                                        <h3 className="text-teal-300 font-semibold">
+                                        <h3 className="text-cyan-300 font-semibold">
                                             {t.name}
                                         </h3>
                                         <p className="text-gray-400 text-xs">

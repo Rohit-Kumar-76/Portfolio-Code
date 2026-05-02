@@ -44,7 +44,7 @@ export default function TechStack() {
         <section className="bg-[#0a192f] text-white py-24">
             <div className="max-w-6xl mx-auto px-6">
 
-                <h2 className="text-3xl md:text-4xl font-bold text-teal-300 text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-cyan-300 text-center mb-16">
                     Tech Stack
                 </h2>
 
@@ -54,7 +54,7 @@ export default function TechStack() {
                         <div key={i}>
 
                             {/* Category Title */}
-                            <h3 className="text-xl font-semibold mb-6 text-gray-300 border-l-4 border-teal-300 pl-3">
+                            <h3 className="text-xl font-semibold mb-6 text-gray-300 border-l-4 border-cyan-300 pl-3">
                                 {category.title}
                             </h3>
 
@@ -64,11 +64,11 @@ export default function TechStack() {
                                 {category.techs.map((tech, idx) => (
                                     <div
                                         key={idx}
-                                        className="flex items-center gap-3 px-5 py-3 rounded-lg bg-[#112240] border border-[#1f3a5f] hover:border-teal-300 hover:shadow-lg hover:shadow-teal-300/10 transition group"
+                                        className="flex items-center gap-3 px-5 py-3 rounded-lg bg-[#112240] border border-[#1f3a5f] hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-300/10 transition group"
                                     >
 
                                         {/* Icon */}
-                                        <div className="text-xl text-teal-300 group-hover:scale-110 transition">
+                                        <div className="text-xl text-cyan-300 group-hover:scale-110 transition">
                                             {tech.icon}
                                         </div>
 

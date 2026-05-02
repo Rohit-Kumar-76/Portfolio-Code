@@ -9,6 +9,7 @@ import {
     FiFolder,
     FiMail,
 } from "react-icons/fi";
+import Logo from "@/components/Logo";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -26,15 +27,7 @@ export default function Navbar() {
 
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-                {/* Logo */}
-                <div className="flex items-center gap-2">
-                    <img
-                        src="https://cdn-icons-png.flaticon.com/512/5968/5968267.png"
-                        alt="logo"
-                        className="w-10 h-10"
-                    />
-                    <h1 className="text-xl font-bold text-teal-300">WebNova</h1>
-                </div>
+                <Logo />
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex gap-8 items-center">
@@ -43,7 +36,7 @@ export default function Navbar() {
                         <a
                             key={i}
                             href={item.link}
-                            className="flex items-center gap-2 hover:text-teal-300 transition"
+                            className="flex items-center gap-2 hover:text-cyan-300 transition"
                         >
                             {item.icon}
                             {item.text}
@@ -52,7 +45,7 @@ export default function Navbar() {
 
                     <a
                         href="/contact-us"
-                        className="border border-teal-300 text-teal-300 px-4 py-1 rounded hover:bg-teal-300 hover:text-[#0a192f] transition"
+                        className="border border-cyan-300 text-cyan-400 px-4 py-1 rounded hover:bg-cyan-400 hover:text-white transition"
                     >
                         Contact Us
                     </a>
