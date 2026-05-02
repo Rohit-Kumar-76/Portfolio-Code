@@ -11,13 +11,12 @@ import { WhyChoose } from "@/components/Whyus";
 import Workflow from "@/components/Workflow";
 import Button from "@/components/Button";
 import Image from "next/image";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
     <main>
-      {/* <Navbar /> */}
-      {/* <Button/> */}
-      {/* <Button /> */}
+
       <Hero />
       <Services />
       <Projects />
@@ -27,7 +26,7 @@ export default function Home() {
       <TechStack />
       <Pricing />
       <Contact />
-      {/* <Footer /> */}
+      <FAQ />
     </main>
   );
 }

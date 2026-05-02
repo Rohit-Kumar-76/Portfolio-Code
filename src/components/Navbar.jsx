@@ -15,10 +15,10 @@ export default function Navbar() {
 
     const menu = [
         { icon: <FiHome />, text: "Home", link: "/" },
-        { icon: <FiUser />, text: "About", link: "/about" },
+        { icon: <FiUser />, text: "About", link: "/about-us" },
         { icon: <FiBriefcase />, text: "Services", link: "/services" },
         { icon: <FiFolder />, text: "Projects", link: "/projects" },
-        { icon: <FiMail />, text: "Contact", link: "/contact" },
+        { icon: <FiMail />, text: "Contact", link: "/contact-us" },
     ];
 
     return (

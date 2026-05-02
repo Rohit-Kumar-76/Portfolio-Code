@@ -1,8 +1,9 @@
 "use client";
 
+import TechStack from "@/components/TechStack";
 import { useEffect, useRef, useState } from "react";
 import { FaRocket, FaBullseye, FaUsers } from "react-icons/fa";
-import TechStack from "./TechStack";
+// import TechStack from "..components/TechStack";
 
 /* 🔥 Scroll Hook */
 function useInView() {
