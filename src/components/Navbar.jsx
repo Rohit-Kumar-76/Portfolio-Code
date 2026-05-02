@@ -18,7 +18,7 @@ export default function Navbar() {
         { icon: <FiUser />, text: "About", link: "/about-us" },
         { icon: <FiBriefcase />, text: "Services", link: "/services" },
         { icon: <FiFolder />, text: "Projects", link: "/projects" },
-        { icon: <FiMail />, text: "Contact", link: "/contact-us" },
+        // { icon: <FiMail />, text: "Contact", link: "/contact-us" },
     ];
 
     return (
@@ -51,7 +51,7 @@ export default function Navbar() {
                     ))}
 
                     <a
-                        href="#contact"
+                        href="/contact-us"
                         className="border border-teal-300 text-teal-300 px-4 py-1 rounded hover:bg-teal-300 hover:text-[#0a192f] transition"
                     >
                         Contact Us
@@ -103,7 +103,7 @@ export default function Navbar() {
                     ))}
 
                     <a
-                        href="#contact"
+                        href="/contact-us"
                         onClick={() => setOpen(false)}
                         className="mt-4 border border-teal-300 text-teal-300 px-4 py-2 rounded text-center hover:bg-teal-300 hover:text-[#0a192f] transition"
                     >

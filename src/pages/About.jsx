@@ -193,7 +193,7 @@ export default function About() {
                     </p>
 
                     <a
-                        href="#contact"
+                        href="/contact-us"
                         className="inline-block px-6 py-2 bg-teal-300 text-[#0a192f] rounded hover:scale-105 transition"
                     >
                         Start Your Project

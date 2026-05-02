@@ -47,8 +47,9 @@ export default function Footer() {
                     </h3>
                     <ul className="space-y-2 text-sm">
                         <li><a href="/" className="hover:text-teal-300">Home</a></li>
-                        <li><a href="/about-us" className="hover:text-teal-300">Services</a></li>
-                        <li><a href="/services" className="hover:text-teal-300">Projects</a></li>
+                        <li><a href="/about-us" className="hover:text-teal-300">About Us</a></li>
+                        <li><a href="/services" className="hover:text-teal-300">Services</a></li>
+                        <li><a href="/projects" className="hover:text-teal-300">Projects</a></li>
                         <li><a href="/contact-us" className="hover:text-teal-300">Contact</a></li>
                     </ul>
                 </div>

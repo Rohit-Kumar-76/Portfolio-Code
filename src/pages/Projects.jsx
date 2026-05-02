@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
 
-export default function Projects() {
+const Projects = () => {
     const projects = [
         {
             slug: "business-website",
@@ -39,17 +39,19 @@ export default function Projects() {
             ],
         },
         {
-            slug: "portfolio-website",
-            title: "Portfolio Website",
-            desc: "Personal website to showcase skills and projects.",
-            img: "/illustration/portfolio.svg",
+            slug: "gym-website",
+            title: "GYM Website",
+            desc: "A high-performance fitness website to manage memberships, showcase trainers, and increase gym signups..",
+            img: "/illustration/gym.svg",
             points: [
-                "Project showcase",
-                "Skills & experience",
-                "Modern UI design",
+                "Membership Plans",
+                "Trainer Profiles",
+                "Class Schedule",
+                // "Online Registration",
             ],
         },
     ];
+
 
     return (
         <section className="bg-[#0a192f] text-white py-24">
@@ -142,7 +144,7 @@ export default function Projects() {
                             <div className="flex justify-center gap-4 mt-4">
 
                                 <Link
-                                    href="/projects/1"
+                                    href={`/projects/${i + 1}`}
                                     className="px-4 py-2 text-sm border border-teal-300 text-teal-300 rounded hover:bg-teal-300 hover:text-[#0a192f] transition cursor-pointer"
                                 >
                                     View Details
@@ -167,3 +169,5 @@ export default function Projects() {
         </section>
     );
 }
+
+export default Projects;
