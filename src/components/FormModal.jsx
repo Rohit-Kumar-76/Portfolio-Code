@@ -101,7 +101,7 @@ export default function FormModal({ open, onClose, projectName }) {
                                     name="message"
                                     value={form.message}
                                     onChange={handleChange}
-                                    placeholder="Purpose (What you need?)"
+                                    placeholder="Message (What you need?)"
                                     rows="3"
                                     className="w-full p-3 bg-transparent outline-none resize-none"
                                 />
