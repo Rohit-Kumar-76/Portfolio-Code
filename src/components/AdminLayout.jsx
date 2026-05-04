@@ -13,9 +13,42 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import LogoAdmin from "@/components/LogoAdmin";
+import { useEffect } from "react";
 
 export default function DashboardClient({ children }) {
+
+    const [user, setUser] = useState(null);
+
     const [open, setOpen] = useState(true);
+
+
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const res = await fetch("/api/admin/profile");
+                const data = await res.json();
+
+                if (res.ok) {
+                    setUser(data);
+                }
+            } catch (err) {
+                console.log("USER ERROR:", err);
+            }
+        };
+
+        fetchUser();
+    }, []);
+
+
+    const handleLogout = async () => {
+        await fetch("/api/auth/logout", {
+            method: "POST",
+        });
+
+
+        window.location.replace("/login");
+    };
 
     return (
         <div className="bg-[#0a192f] text-white">
@@ -31,18 +64,27 @@ export default function DashboardClient({ children }) {
                 <nav className="flex flex-col gap-2 p-4 text-sm flex-1 overflow-y-auto">
                     <NavItem icon={<FaHome />} text="Dashboard" link="/admin" open={open} />
                     <NavItem icon={<FaProjectDiagram />} text="Projects" link="/admin/projects" open={open} />
-                    <NavItem icon={<FaUsers />} text="Users" link="/admin/users" open={open} />
+                    {user?.role === "admin" && (
+                        <NavItem
+                            icon={<FaUsers />}
+                            text="Users"
+                            link="/admin/users"
+                            open={open}
+                        />
+                    )}
                     <NavItem icon={<FaEnvelope />} text="Leads" link="/admin/leads" open={open} />
                     <NavItem icon={<FaCommentDots />} text="Enquiry" link="/admin/enquiry" open={open} />
                     <NavItem icon={<FaCog />} text="Settings" link="/admin/settings" open={open} />
                 </nav>
 
                 <div className="p-4 border-t border-[#1f3a5f]">
-                    <button className="flex items-center gap-3 text-red-400 hover:text-red-300 w-full cursor-pointer">
+                    <button onClick={handleLogout} className="flex items-center gap-3 text-red-400 hover:text-red-300 w-full cursor-pointer">
                         <FaSignOutAlt />
                         {open && "Logout"}
                     </button>
                 </div>
+
+
 
             </aside>
 
@@ -56,12 +98,15 @@ export default function DashboardClient({ children }) {
 
                     <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="w-8 h-8 rounded-full bg-cyan-300 text-[#0a192f] flex items-center justify-center font-bold">
-                                <a href="/admin/profile">A</a>
-                            </div>
+                            <a href="/admin/profile">
+                                <div className="w-8 h-8 rounded-full bg-cyan-300 text-[#0a192f] flex items-center justify-center font-bold">
+                                    {user?.name?.charAt(0) || "A"}
+                                </div>
+                            </a>
                             <span className="hidden md:block text-sm">
-                                Admin
+                                {user?.name || "Admin"}
                             </span>
+
                         </div>
                     </div>
                 </header>

@@ -22,26 +22,45 @@ export default function FormModal({ open, onClose, projectName }) {
     };
 
     /* 🔥 HANDLE SUBMIT */
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const data = {
             ...form,
-            project: projectName,
+            project: projectName, // 👈 already correct
         };
 
-        console.log("FORM DATA:", data); // 👈 yaha console me dikhega
+        try {
+            const res = await fetch("/api/admin/leads", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
 
-        // success popup show
-        setSuccess(true);
+            const result = await res.json();
 
-        // reset form
-        setForm({
-            name: "",
-            email: "",
-            phone: "",
-            message: ""
-        });
+            if (!res.ok) {
+                alert(result.error || "Failed to submit");
+                return;
+            }
+
+            // ✅ success
+            setSuccess(true);
+
+            // reset form
+            setForm({
+                name: "",
+                email: "",
+                phone: "",
+                message: "",
+            });
+
+        } catch (err) {
+            console.log(err);
+            alert("Something went wrong");
+        }
     };
 
     return (

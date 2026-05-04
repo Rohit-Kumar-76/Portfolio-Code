@@ -1,13 +1,41 @@
 "use client";
+import { useEffect, useState } from "react";
 
 export function Pricing() {
+
+
+
+    const [settings, setSettings] = useState(null);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                const res = await fetch("/api/admin/settings");
+                const data = await res.json();
+                setSettings(data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+        fetchSettings();
+    }, []);
+
+    const getFinalPrice = (price, offer) => {
+        const p = Number(price) || 0;
+        const o = Number(offer) || 0;
+
+        return Math.round(p - (p * o) / 100);
+    };
+
+
     const plans = [
         {
             name: "Starter",
-            original: "₹4,999",
-            price: "₹2,499",
+            original: settings?.pricing?.starter,
+            price: getFinalPrice(settings?.pricing?.starter, settings?.offerPercentage),
             desc: "Perfect for personal or landing page",
-            offer: "50% OFF",
+            offer: `${settings?.offerPercentage || 0}% OFF`,
             features: [
                 "1 Landing Page (Scroll Website)",
                 "Responsive Design (Mobile + Tablet)",
@@ -18,12 +46,11 @@ export function Pricing() {
             ],
         },
         {
-            name: "Business",
-            original: "₹9,999",
-            price: "₹4,999",
+            original: settings?.pricing?.business,
+            price: getFinalPrice(settings?.pricing?.business, settings?.offerPercentage),
             desc: "Best for small businesses & portfolio",
             popular: true,
-            offer: "50% OFF",
+            offer: `${settings?.offerPercentage || 0}% OFF`,
             features: [
                 "Up to 5 Pages Website",
                 "Modern UI/UX Design",
@@ -36,10 +63,10 @@ export function Pricing() {
         },
         {
             name: "Pro",
-            original: "₹19,999",
-            price: "₹9,999",
+            original: settings?.pricing?.pro,
+            price: getFinalPrice(settings?.pricing?.pro, settings?.offerPercentage),
             desc: "For startups & custom web apps",
-            offer: "50% OFF",
+            offer: `${settings?.offerPercentage || 0}% OFF`,
             features: [
                 "Custom Web Application",
                 "Admin Panel / Dashboard",
@@ -104,7 +131,7 @@ export function Pricing() {
                                 </span>
 
                                 <span className="text-3xl font-bold text-cyan-300">
-                                    {plan.price}
+                                    {plan.price - 1}
                                 </span>
                             </div>
 

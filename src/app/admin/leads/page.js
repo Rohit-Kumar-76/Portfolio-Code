@@ -1,42 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch, FaEdit, FaSave } from "react-icons/fa";
-
-
+import { toast } from "sonner";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 export default function LeadsPage() {
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("all");
     const [editingId, setEditingId] = useState(null);
+    const [page, setPage] = useState(1);
+    const limit = 10;
 
-    const [leads, setLeads] = useState([
-        {
-            id: 1,
-            name: "Rahul Sharma",
-            email: "rahul@gmail.com",
-            phone: "9876543210",
-            project: "Business Website",
-            status: "new",
-        },
-        {
-            id: 2,
-            name: "Aman Kumar",
-            email: "aman@gmail.com",
-            phone: "9123456780",
-            project: "Cafe Website",
-            status: "contacted",
-        },
-        {
-            id: 3,
-            name: "Neha Singh",
-            email: "neha@gmail.com",
-            phone: "9988776655",
-            project: "Portfolio",
-            status: "working",
-        },
-    ]);
+    const [leads, setLeads] = useState([]);
+
+
+    useEffect(() => {
+        setPage(1);
+    }, [search, filter]);
+
+    // 🔥 FETCH FROM DB
+    const fetchLeads = async () => {
+        try {
+            const res = await fetch("/api/admin/leads");
+
+            const data = await res.json(); // 🔥 पहले parse करो
+
+            if (!res.ok) {
+                console.log("API ERROR:", data);
+                setLeads([]);
+                return;
+            }
+
+            // 🔥 safety check
+            if (!Array.isArray(data)) {
+                console.log("Invalid data:", data);
+                setLeads([]);
+                return;
+            }
+
+            setLeads(data);
+
+        } catch (err) {
+            console.log(err);
+            setLeads([]); // ✅ important
+        }
+    };
+
+    useEffect(() => {
+        fetchLeads();
+    }, []);
 
     /* 🔥 FILTER */
     const filtered = leads.filter((l) => {
@@ -45,16 +60,74 @@ export default function LeadsPage() {
         const matchFilter = filter === "all" || l.status === filter;
         return matchSearch && matchFilter;
     });
+    const totalPages = Math.ceil(filtered.length / limit);
 
-    /* 🔥 STATUS UPDATE */
-    const updateStatus = (id, status) => {
-        setLeads(leads.map(l => l.id === id ? { ...l, status } : l));
+    const paginatedLeads = filtered.slice(
+        (page - 1) * limit,
+        page * limit
+    );
+
+    /* 🔥 STATUS UPDATE (API CALL) */
+    const updateStatus = async (id, status) => {
+        try {
+            const res = await fetch(`/api/admin/leads/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ status }),
+            });
+
+            if (!res.ok) throw new Error("Update failed");
+
+            fetchLeads(); // refresh
+
+        } catch (err) {
+            console.log(err);
+            toast.error("Error updating status");
+        }
+    };
+
+    const exportToExcel = () => {
+        try {
+            // 🔥 data clean (sirf useful fields)
+            const data = leads.map((l, index) => ({
+                No: index + 1,
+                Name: l.name,
+                Email: l.email,
+                Phone: l.phone,
+                Project: l.project,
+                Status: l.status,
+            }));
+
+            // 🔥 sheet
+            const worksheet = XLSX.utils.json_to_sheet(data);
+
+            // 🔥 workbook
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
+
+            // 🔥 file
+            const excelBuffer = XLSX.write(workbook, {
+                bookType: "xlsx",
+                type: "array",
+            });
+
+            const file = new Blob([excelBuffer], {
+                type: "application/octet-stream",
+            });
+
+            saveAs(file, "Leads.xlsx");
+
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
         <div className="space-y-6">
 
-            {/* 🔥 HEADER */}
+            {/* HEADER */}
             <div>
                 <h1 className="text-2xl font-bold text-cyan-300">
                     Leads Management
@@ -64,10 +137,9 @@ export default function LeadsPage() {
                 </p>
             </div>
 
-            {/* 🔥 SEARCH + FILTER */}
+            {/* SEARCH + FILTER */}
             <div className="flex flex-wrap gap-4 justify-between">
 
-                {/* SEARCH */}
                 <div className="flex items-center bg-[#112240] px-3 rounded border border-[#1f3a5f] w-full md:w-80">
                     <FaSearch className="text-gray-400" />
                     <input
@@ -78,7 +150,6 @@ export default function LeadsPage() {
                     />
                 </div>
 
-                {/* FILTER */}
                 <select
                     className="bg-[#112240] border border-[#1f3a5f] px-3 py-2 rounded"
                     value={filter}
@@ -93,13 +164,14 @@ export default function LeadsPage() {
 
             </div>
 
-            {/* 🔥 TABLE */}
+            {/* TABLE */}
             <div className="bg-[#112240] border border-[#1f3a5f] rounded-xl overflow-x-auto">
 
                 <table className="w-full text-sm">
 
                     <thead className="text-gray-400 border-b border-[#1f3a5f]">
                         <tr>
+                            <th className="p-3 ">#</th>
                             <th className="p-3 text-left">Name</th>
                             <th className="p-3 text-left">Email</th>
                             <th className="p-3 text-left">Phone</th>
@@ -111,9 +183,11 @@ export default function LeadsPage() {
 
                     <tbody>
 
-                        {filtered.map((lead) => (
-                            <tr key={lead.id} className="border-b border-[#1f3a5f] hover:bg-[#0a192f]">
-
+                        {paginatedLeads.map((lead, index) => (
+                            <tr key={lead._id} className="border-b border-[#1f3a5f] hover:bg-[#0a192f]">
+                                <td className="p-3">
+                                    {(page - 1) * limit + index + 1}
+                                </td>
                                 <td className="p-3">{lead.name}</td>
                                 <td className="p-3">{lead.email}</td>
                                 <td className="p-3">{lead.phone}</td>
@@ -126,18 +200,18 @@ export default function LeadsPage() {
                                         <select
                                             value={lead.status}
                                             onChange={(e) =>
-                                                updateStatus(lead.id, e.target.value)
+                                                updateStatus(lead._id, e.target.value)
                                             }
                                             className="bg-[#0a192f] border border-[#1f3a5f] px-2 py-1 rounded"
                                         >
                                             <option value="new">New</option>
                                             <option value="contacted">Contacted</option>
                                         </select>
-                                    ) : editingId === lead.id ? (
+                                    ) : editingId === lead._id ? (
                                         <select
                                             value={lead.status}
                                             onChange={(e) =>
-                                                updateStatus(lead.id, e.target.value)
+                                                updateStatus(lead._id, e.target.value)
                                             }
                                             className="bg-[#0a192f] border border-[#1f3a5f] px-2 py-1 rounded"
                                         >
@@ -155,7 +229,7 @@ export default function LeadsPage() {
                                 <td className="p-3">
 
                                     {lead.status !== "new" && (
-                                        editingId === lead.id ? (
+                                        editingId === lead._id ? (
                                             <button
                                                 onClick={() => setEditingId(null)}
                                                 className="text-green-400 flex items-center gap-1"
@@ -164,7 +238,7 @@ export default function LeadsPage() {
                                             </button>
                                         ) : (
                                             <button
-                                                onClick={() => setEditingId(lead.id)}
+                                                onClick={() => setEditingId(lead._id)}
                                                 className="text-cyan-300 flex items-center gap-1"
                                             >
                                                 <FaEdit /> Edit
@@ -180,7 +254,34 @@ export default function LeadsPage() {
                     </tbody>
 
                 </table>
+                <div className="flex justify-center gap-2 mt-4">
 
+                    <button
+                        disabled={page === 1}
+                        onClick={() => setPage(page - 1)}
+                        className="px-3 py-1 bg-[#112240] border border-[#1f3a5f] rounded disabled:opacity-40"
+                    >
+                        Prev
+                    </button>
+
+                    <span className="text-gray-400 px-2">
+                        {page} / {totalPages || 1}
+                    </span>
+
+                    <button
+                        disabled={page === totalPages}
+                        onClick={() => setPage(page + 1)}
+                        className="px-3 py-1 bg-[#112240] border border-[#1f3a5f] rounded disabled:opacity-40"
+                    >
+                        Next
+                    </button>
+                    <button
+                        onClick={exportToExcel}
+                        className="bg-[#112259] cursor-pointer border-[#512240] text-white px-4 py-2 rounded hover:opacity-80 ml-5 mb-2"
+                    >
+                        Export Excel
+                    </button>
+                </div>
                 {filtered.length === 0 && (
                     <div className="text-center py-6 text-gray-400">
                         No leads found
@@ -193,8 +294,7 @@ export default function LeadsPage() {
     );
 }
 
-
-/* 🔧 STATUS BADGE */
+/* STATUS BADGE */
 function StatusBadge({ status }) {
     const styles = {
         contacted: "text-yellow-400",

@@ -1,19 +1,111 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
     FaProjectDiagram,
     FaUsers,
     FaEnvelope,
     FaChartLine,
-    FaArrowUp,
+    FaUserPlus,
 } from "react-icons/fa";
 
 export default function DashboardPage() {
+    const [projects, setProjects] = useState([]);
+    const [leads, setLeads] = useState([]);
+    const [enquiries, setEnquiries] = useState([]);
+
+    // 🔥 FETCH DATA
+    useEffect(() => {
+        fetchProjects();
+        fetchLeads();
+        fetchEnquiry();
+    }, []);
+
+    const fetchProjects = async () => {
+        try {
+            const res = await fetch("/api/admin/projects");
+            const data = await res.json();
+            setProjects(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const fetchLeads = async () => {
+        try {
+            const res = await fetch("/api/admin/leads");
+            const data = await res.json();
+            setLeads(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    const fetchEnquiry = async () => {
+        try {
+            const res = await fetch("/api/admin/enquiry");
+            const data = await res.json();
+            setEnquiries(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    // 🔥 CALCULATIONS
+    const totalProjects = projects.length;
+    const activeProjects = projects.filter(p => p.status === "working").length;
+    const totalLeads = leads.length;
+    const totalEnquiry = enquiries.length;
+
+
+
+    // 🔥 CATEGORY COUNT
+    const categoryCount = {};
+    projects.forEach(p => {
+        const type = p.businessType || "Other";
+        categoryCount[type] = (categoryCount[type] || 0) + 1;
+    });
+
+    const recentLeads = leads.slice(0, 5);
+    const recentEnquiry = enquiries.slice(0, 5);
+
+
+    const getThisMonth = (data) => {
+        const now = new Date();
+        return data.filter(item => {
+            const d = new Date(item.createdAt);
+            return d.getMonth() === now.getMonth() &&
+                d.getFullYear() === now.getFullYear();
+        });
+    };
+
+    const getLastMonth = (data) => {
+        const now = new Date();
+        const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+
+        return data.filter(item => {
+            const d = new Date(item.createdAt);
+            return d.getMonth() === lastMonth.getMonth() &&
+                d.getFullYear() === lastMonth.getFullYear();
+        });
+    };
+
+    const thisMonthLeads = getThisMonth(leads).length;
+    const lastMonthLeads = getLastMonth(leads).length;
+
+    let growth = 0;
+
+    if (lastMonthLeads === 0) {
+        growth = thisMonthLeads > 0 ? 100 : 0;
+    } else {
+        growth = ((thisMonthLeads - lastMonthLeads) / lastMonthLeads) * 100;
+    }
+
+    const growthText = `${growth.toFixed(1)}%`;
 
     return (
         <div className="space-y-8">
 
-            {/* 🔥 HEADER */}
+            {/* HEADER */}
             <div>
                 <h1 className="text-2xl font-bold text-cyan-300">
                     Dashboard Overview
@@ -23,87 +115,82 @@ export default function DashboardPage() {
                 </p>
             </div>
 
-            {/* 🔥 STATS CARDS */}
-            <div className="grid md:grid-cols-4 gap-6">
-
-                <StatCard title="Total Projects" value="12" icon={<FaProjectDiagram />} />
-                <StatCard title="Active Clients" value="8" icon={<FaUsers />} />
-                <StatCard title="Leads" value="25" icon={<FaEnvelope />} />
-                <StatCard title="Growth" value="+32%" icon={<FaChartLine />} />
-
+            {/* STATS */}
+            <div className="grid md:grid-cols-5 gap-6">
+                <StatCard title="Total Projects" value={totalProjects} icon={<FaProjectDiagram />} />
+                <StatCard title="Active Projects" value={activeProjects} icon={<FaUsers />} />
+                <StatCard title="Leads" value={totalLeads} icon={<FaUserPlus />} />
+                <StatCard title="Enquiries" value={totalEnquiry} icon={<FaEnvelope />} />
+                <StatCard
+                    title="Growth"
+                    className={growth > 0 ? "text-green-400" : "text-red-400"}
+                    value={growthText}
+                    icon={<FaChartLine />}
+                />
             </div>
 
-            {/* 🔥 PROJECT ANALYTICS */}
+            {/* CATEGORY */}
             <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
-
                 <h2 className="text-lg font-semibold text-cyan-300 mb-4">
                     Project Categories
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-300">
-
-                    <Box title="Business Websites" count="4" />
-                    <Box title="Cafe / Restaurant" count="2" />
-                    <Box title="School / Coaching" count="3" />
-                    <Box title="Gym Websites" count="1" />
-                    <Box title="Portfolio Sites" count="1" />
-                    <Box title="Custom Apps" count="1" />
-
+                    {Object.entries(categoryCount).map(([key, value]) => (
+                        <Box key={key} title={key} count={value} />
+                    ))}
                 </div>
-
             </div>
 
-            {/* 🔥 RECENT LEADS */}
-            <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
+            <div className="grid grid-cols-2 gap-4">
 
-                <h2 className="text-lg font-semibold text-cyan-300 mb-4">
-                    Recent Leads
-                </h2>
+                {/* RECENT LEADS */}
+                <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
+                    <h2 className="text-lg font-semibold text-cyan-300 mb-4">
+                        Recent Leads
+                    </h2>
 
-                <div className="space-y-4 text-sm">
-
-                    <Lead name="Rahul Sharma" project="Business Website" />
-                    <Lead name="Aman Kumar" project="Cafe Website" />
-                    <Lead name="Neha Singh" project="Portfolio Website" />
-
+                    <div className="space-y-4 text-sm">
+                        {recentLeads.map((l) => (
+                            <Lead key={l._id} name={l.name} project={l.project || "Enquiry"} />
+                        ))}
+                    </div>
                 </div>
+                {/* RECENT LEADS */}
+                <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
+                    <h2 className="text-lg font-semibold text-cyan-300 mb-4">
+                        Recent Enquiry
+                    </h2>
 
+                    <div className="space-y-4 text-sm">
+                        {recentEnquiry.map((l) => (
+                            <Lead key={l._id} name={l.name} project={l.phone || "Enquiry"} />
+                        ))}
+                    </div>
+                </div>
             </div>
 
-            {/* 🔥 QUICK ACTIONS */}
-            <div className="bg-[#112240] p-6 rounded-xl border border-[#1f3a5f]">
 
-                <h2 className="text-lg font-semibold text-cyan-300 mb-4">
-                    Quick Actions
-                </h2>
-
-                <div className="flex flex-wrap gap-4">
-
-                    <Action text="Add Project" />
-                    <Action text="View Leads" />
-                    <Action text="Manage Users" />
-                    <Action text="Update Pricing" />
-
-                </div>
-
-            </div>
-
-        </div>
+        </div >
     );
 }
 
 
 /* 🔧 STAT CARD */
-function StatCard({ title, value, icon }) {
+function StatCard({ title, value, icon, className }) {
     return (
-        <div className="bg-[#112240] p-5 rounded-xl border border-[#1f3a5f] flex justify-between items-center">
+        <div className={`bg-[#112240] p-5 rounded-xl border border-[#1f3a5f] flex justify-between items-center ${className}`}>
 
             <div>
                 <p className="text-gray-400 text-sm">{title}</p>
-                <h3 className="text-xl font-bold text-cyan-300">{value}</h3>
+                <h3 className="text-xl font-bold">
+                    <span className="bg-green-400/10 text-cyan-300 px-3 py-1 rounded-full">
+                        {value}
+                    </span>
+                </h3>
             </div>
 
-            <div className="text-cyan-300 text-xl">
+            <div className="text-xl">
                 {icon}
             </div>
 
@@ -111,13 +198,12 @@ function StatCard({ title, value, icon }) {
     );
 }
 
-
 /* 🔧 CATEGORY BOX */
 function Box({ title, count }) {
     return (
         <div className="bg-[#0a192f] p-4 rounded border border-[#1f3a5f] flex justify-between">
             <span>{title}</span>
-            <span className="text-cyan-300">{count}</span>
+            <span className="text-cyan-300 bg-green-400/10 text-cyan-300 px-3 py-1 rounded-full">{count}</span>
         </div>
     );
 }
@@ -135,10 +221,10 @@ function Lead({ name, project }) {
 
 
 /* 🔧 ACTION BUTTON */
-function Action({ text }) {
+function Action({ text, url }) {
     return (
-        <button className="px-4 py-2 bg-cyan-300 text-[#0a192f] rounded hover:opacity-80 cursor-pointer">
+        <a href={url} className="px-4 py-2 bg-cyan-300 text-[#0a192f] rounded hover:opacity-80 cursor-pointer">
             {text}
-        </button>
+        </a>
     );
 }

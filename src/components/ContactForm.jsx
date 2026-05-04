@@ -20,20 +20,38 @@ export default function Contact() {
     };
 
     /* 🔥 HANDLE SUBMIT */
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("CONTACT DATA:", form); // 👈 data yaha milega
+        try {
+            const res = await fetch("/api/admin/enquiry", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(form),
+            });
 
-        setSuccess(true);
+            const data = await res.json();
 
-        // reset
-        setForm({
-            name: "",
-            email: "",
-            phone: "",
-            message: ""
-        });
+            if (!res.ok) {
+                alert(data.error);
+                return;
+            }
+
+            setSuccess(true);
+
+            setForm({
+                name: "",
+                email: "",
+                phone: "",
+                message: "",
+            });
+
+        } catch (err) {
+            console.log(err);
+            alert("Something went wrong");
+        }
     };
 
     return (
