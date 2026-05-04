@@ -22,3 +22,39 @@ export async function PUT(req, context) {
         return NextResponse.json({ error: err.message }, { status: 500 });
     }
 }
+
+
+
+
+export async function DELETE(req, { params }) {
+    try {
+        await connectDB();
+
+        const { id } = await params;
+        const { user: authUser, error } = await verifyAdmin();
+        // 🔍 Check exist
+        const enquiry = await Lead.findById(id);
+        if (!enquiry) {
+            return NextResponse.json(
+                { success: false, message: "Enquiry not found" },
+                { status: 404 }
+            );
+        }
+
+        // 🗑️ Delete
+        await Lead.findByIdAndDelete(id);
+
+        return NextResponse.json({
+            success: true,
+            message: "Enquiry deleted successfully",
+        });
+
+    } catch (error) {
+        console.log("DELETE ERROR:", error);
+
+        return NextResponse.json(
+            { success: false, message: "Server error" },
+            { status: 500 }
+        );
+    }
+}

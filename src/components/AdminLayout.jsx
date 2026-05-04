@@ -125,8 +125,8 @@ export default function DashboardClient({ children }) {
 /* NAV ITEM */
 function NavItem({ icon, text, link, open }) {
     return (
-        <Link href={link} className="flex items-center gap-3 px-2 py-2 rounded hover:bg-[#1f3a5f] transition">
-            <span className="text-lg">{icon}</span>
+        <Link href={link} className="flex items-center gap-3 px-2 py-2 border-1 border-[#1f3a5f] rounded shadow-md hover:bg-[#1f3a5f] transition">
+            <span className="text-lg ">{icon}</span>
             {open && <span>{text}</span>}
         </Link>
     );

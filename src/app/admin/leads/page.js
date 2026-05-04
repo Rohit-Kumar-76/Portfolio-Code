@@ -5,7 +5,7 @@ import { FaSearch, FaEdit, FaSave } from "react-icons/fa";
 import { toast } from "sonner";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
-
+import Loader from "@/components/Loader";
 export default function LeadsPage() {
 
     const [search, setSearch] = useState("");
@@ -15,6 +15,10 @@ export default function LeadsPage() {
     const limit = 10;
 
     const [leads, setLeads] = useState([]);
+    const [loader, setLoader] = useState(false);
+
+    const [deleteId, setDeleteId] = useState(null);
+    const [deleting, setDeleting] = useState(false);
 
 
     useEffect(() => {
@@ -69,6 +73,7 @@ export default function LeadsPage() {
 
     /* 🔥 STATUS UPDATE (API CALL) */
     const updateStatus = async (id, status) => {
+        setLoader(true);
         try {
             const res = await fetch(`/api/admin/leads/${id}`, {
                 method: "PUT",
@@ -81,12 +86,43 @@ export default function LeadsPage() {
             if (!res.ok) throw new Error("Update failed");
 
             fetchLeads(); // refresh
+            setLoader(false);
 
         } catch (err) {
             console.log(err);
             toast.error("Error updating status");
         }
     };
+
+    const handleDelete = async () => {
+        if (!deleteId) return;
+
+        setDeleting(true);
+        setLoader(true);
+
+        try {
+            const res = await fetch(`/api/admin/leads/${deleteId}`, {
+                method: "DELETE",
+            });
+
+            if (!res.ok) throw new Error("Delete failed");
+
+            toast.success("Deleted successfully");
+
+            // UI update
+            setLeads(prev => prev.filter(item => item._id !== deleteId));
+
+            setDeleteId(null);
+            setLoader(false);
+        } catch (err) {
+            console.log(err);
+            toast.error("Delete failed");
+            setLoader(false);
+        } finally {
+            setDeleting(false);
+        }
+    };
+
 
     const exportToExcel = () => {
         try {
@@ -228,23 +264,36 @@ export default function LeadsPage() {
                                 {/* ACTION */}
                                 <td className="p-3">
 
-                                    {lead.status !== "new" && (
-                                        editingId === lead._id ? (
-                                            <button
-                                                onClick={() => setEditingId(null)}
-                                                className="text-green-400 flex items-center gap-1"
-                                            >
-                                                <FaSave /> Save
-                                            </button>
-                                        ) : (
-                                            <button
-                                                onClick={() => setEditingId(lead._id)}
-                                                className="text-cyan-300 flex items-center gap-1"
-                                            >
-                                                <FaEdit /> Edit
-                                            </button>
-                                        )
-                                    )}
+                                    <div className="flex items-center gap-3">
+
+                                        {/* Edit */}
+                                        {lead.status !== "new" && (
+                                            editingId === lead._id ? (
+                                                <button
+                                                    onClick={() => setEditingId(null)}
+                                                    className="text-green-400 flex items-center gap-1"
+                                                >
+                                                    <FaSave /> Save
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    onClick={() => setEditingId(lead._id)}
+                                                    className="text-cyan-300 flex items-center gap-1"
+                                                >
+                                                    <FaEdit /> Edit
+                                                </button>
+                                            )
+                                        )}
+
+                                        {/* 🔥 DELETE */}
+                                        <button
+                                            onClick={() => setDeleteId(lead._id)}
+                                            className="text-red-400 hover:scale-110"
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </div>
 
                                 </td>
 
@@ -289,7 +338,41 @@ export default function LeadsPage() {
                 )}
 
             </div>
+            {deleteId && (
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
 
+                    <div className="bg-[#0f172a] p-6 rounded-xl border border-[#1f3a5f] w-[320px] text-center">
+
+                        <h2 className="text-lg font-semibold text-white mb-3">
+                            Delete Enquiry?
+                        </h2>
+
+                        <p className="text-gray-400 mb-5">
+                            This action cannot be undone.
+                        </p>
+
+                        <div className="flex justify-center gap-4">
+
+                            <button
+                                onClick={() => setDeleteId(null)}
+                                className="px-4 py-2 border border-gray-500 rounded-lg hover:bg-gray-800"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                onClick={handleDelete}
+                                className="px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
+                            >
+                                {deleting ? "Deleting..." : "Delete"}
+                            </button>
+
+                        </div>
+
+                    </div>
+                </div>
+            )}
+            {loader && <Loader />}
         </div>
     );
 }

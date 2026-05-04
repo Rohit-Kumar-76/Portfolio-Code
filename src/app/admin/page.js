@@ -152,7 +152,7 @@ export default function DashboardPage() {
 
                     <div className="space-y-4 text-sm">
                         {recentLeads.map((l) => (
-                            <Lead key={l._id} name={l.name} project={l.project || "Enquiry"} />
+                            <Lead key={l._id} name={l.name} project={l.project || "Leads"} />
                         ))}
                     </div>
                 </div>

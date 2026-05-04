@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaEdit, FaPlus } from "react-icons/fa";
 import { toast } from "sonner";
+import Loader from "@/components/Loader";
 
 export default function ProjectsPage() {
     const [projects, setProjects] = useState([]);
@@ -13,6 +14,8 @@ export default function ProjectsPage() {
     const [statusFilter, setStatusFilter] = useState("all");
     const [page, setPage] = useState(1);
     const limit = 10;
+    const [loader, setLoader] = useState(false);
+
 
     const [form, setForm] = useState({
         name: "",
@@ -68,7 +71,7 @@ export default function ProjectsPage() {
     // 🔥 SUBMIT
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoader(true);
         try {
             const url = editId
                 ? `/api/admin/projects/${editId}`
@@ -96,10 +99,12 @@ export default function ProjectsPage() {
             setEditId(null);
             resetForm();
             fetchProjects();
-            toast.success("Projects Added");
+            setLoader(false);
+            toast.success(editId ? "Project Updated " : "Projects Added");
 
         } catch (err) {
             console.log(err);
+            setLoader(false);
         }
     };
 
@@ -338,7 +343,7 @@ export default function ProjectsPage() {
                     </div>
                 </div>
             )}
-
+            {loader && <Loader />}
         </div>
     );
 }
