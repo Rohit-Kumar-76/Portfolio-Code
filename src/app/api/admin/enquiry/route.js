@@ -6,49 +6,49 @@ import { verifyAdmin } from "@/lib/auth";
 
 // 🔥 GET ALL LEADS
 export async function GET() {
-    try {
-        await connectDB();
-        const { user: authUser, error } = await verifyAdmin();
+  try {
+    await connectDB();
+    const { user: authUser, error } = await verifyAdmin();
 
-        const leads = await Enquiry.find().sort({ createdAt: -1 });
+    const leads = await Enquiry.find().sort({ createdAt: -1 });
 
-        return NextResponse.json(leads);
-    } catch (err) {
-        return NextResponse.json({ error: err.message }, { status: 500 });
-    }
+    return NextResponse.json(leads);
+  } catch (err) {
+    return NextResponse.json({ error: err.message }, { status: 500 });
+  }
 }
 
 
 
 
 export async function POST(req) {
-    try {
-        await connectDB();
-        const { user: authUser, error } = await verifyAdmin();
+  try {
+    await connectDB();
+    const { user: authUser, error } = await verifyAdmin();
 
-        const { name, email, phone, message } = await req.json();
+    const { name, email, phone, message } = await req.json();
 
-        if (!name || !email || !phone) {
-            return NextResponse.json(
-                { error: "Missing fields" },
-                { status: 400 }
-            );
-        }
+    if (!name || !email || !phone) {
+      return NextResponse.json(
+        { error: "Missing fields" },
+        { status: 400 }
+      );
+    }
 
-        const lead = await Enquiry.create({
-            name,
-            email,
-            phone,
-            message,
-            status: "new",
-        });
+    const lead = await Enquiry.create({
+      name,
+      email,
+      phone,
+      message,
+      status: "new",
+    });
 
 
-        await transporter.sendMail({
-            from: `"Trioscript Enquiry" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_USER,
-            subject: "New Enquiry Received 📩",
-            html: `
+    await transporter.sendMail({
+      from: `"Trioscript Enquiry" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      subject: "New Enquiry Received 📩",
+      html: `
     <div style="font-family: Arial, sans-serif; background:#0a192f; padding:20px; color:#fff;">
       
       <div style="max-width:600px; margin:auto; background:#112240; padding:20px; border-radius:10px;">
@@ -60,13 +60,13 @@ export async function POST(req) {
         <hr style="border:1px solid #1f3a5f;" />
 
         <h3 style="color:#38bdf8;">👤 User Details</h3>
-        <p><b>Name:</b> ${data.name}</p>
-        <p><b>Email:</b> ${data.email}</p>
-        <p><b>Phone:</b> ${data.phone}</p>
-        <p><b>Message:</b> ${data.message}</p>
+        <p><b>Name:</b> ${lead.name}</p>
+        <p><b>Email:</b> ${lead.email}</p>
+        <p><b>Phone:</b> ${lead.phone}</p>
+        <p><b>Message:</b> ${lead.message}</p>
 
         <div style="margin-top:15px;">
-          <a href="mailto:${data.email}" 
+          <a href="mailto:${lead.email}" 
              style="background:#38bdf8; color:#0a192f; padding:8px 12px; text-decoration:none; border-radius:5px;">
              Reply to Client
           </a>
@@ -93,19 +93,19 @@ export async function POST(req) {
       </div>
     </div>
   `,
-        });
+    });
 
-        // cleint auto reply 
+    // cleint auto reply 
 
-        await transporter.sendMail({
-            to: data.email,
-            subject: "We Received Your Enquiry ✔",
-            html: `
+    await transporter.sendMail({
+      to: lead.email,
+      subject: "We Received Your Enquiry ✔",
+      html: `
     <div style="font-family: Arial, sans-serif; background:#f9fafb; padding:20px;">
       
       <div style="max-width:600px; margin:auto; background:#ffffff; padding:20px; border-radius:10px;">
         
-        <h2 style="color:#0a192f;">Hi ${data.name} 👋</h2>
+        <h2 style="color:#0a192f;">Hi ${lead.name} 👋</h2>
         
         <p>Thank you for contacting <b>Trioscript</b>.</p>
         
@@ -116,7 +116,7 @@ export async function POST(req) {
         <hr />
 
         <h3>📋 Your Message</h3>
-        <p>${data.message}</p>
+        <p>${lead.message}</p>
 
         <hr />
 
@@ -138,18 +138,18 @@ export async function POST(req) {
       </div>
     </div>
   `,
-        });
+    });
 
 
-        return NextResponse.json({
-            message: "Enquiry submitted",
-            lead,
-        });
+    return NextResponse.json({
+      message: "Enquiry submitted",
+      lead,
+    });
 
-    } catch (err) {
-        return NextResponse.json(
-            { error: err.message },
-            { status: 500 }
-        );
-    }
+  } catch (err) {
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500 }
+    );
+  }
 }
