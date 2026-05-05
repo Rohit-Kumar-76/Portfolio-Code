@@ -1,6 +1,7 @@
 "use client";
 
 import TechStack from "@/components/TechStack";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaRocket, FaBullseye, FaUsers } from "react-icons/fa";
 // import TechStack from "..components/TechStack";
@@ -77,9 +78,12 @@ export default function About() {
                     <div className="flex justify-center relative">
                         <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                        <img
+                        <Image
+                            alt="About TrioScript"
+                            width={400}
+                            height={400}
                             src="/illustration/teams.svg"
-                            alt="about"
+
                             className="w-[80%] max-w-md relative z-10"
                         />
                     </div>

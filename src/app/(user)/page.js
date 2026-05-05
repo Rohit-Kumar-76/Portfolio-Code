@@ -13,19 +13,17 @@ import Workflow from "@/components/Workflow";
 import Button from "@/components/Button";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
-// import { usePageTitle } from "@/hooks/usePageTitle";
+
 import { useLayoutEffect } from "react";
 
 export default function Home() {
-  // usePageTitle(" TrioScript | Home");
+
   useLayoutEffect(() => {
     document.title = "TrioScript | Home";
   }, []);
   return (
     <main>
-
       <Hero />
-      <Services />
       <Projects />
       <Testimonials />
       <Workflow />

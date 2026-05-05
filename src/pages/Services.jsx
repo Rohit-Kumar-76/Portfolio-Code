@@ -2,6 +2,7 @@
 
 import { WhyChoose } from "@/components/Whyus";
 import Workflow from "@/components/Workflow";
+import Image from "next/image";
 import {
     FaStore,
     FaSchool,
@@ -101,9 +102,11 @@ export default function Services() {
                     <div className="flex justify-center relative">
                         <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                        <img
+                        <Image
+                            width={400}
+                            height={400}
                             src="/illustration/service.svg"
-                            alt="services"
+                            alt="services provided By TrioScript"
                             className="w-[80%] max-w-md relative z-10"
                         />
                     </div>

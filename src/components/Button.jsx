@@ -38,7 +38,7 @@ export default function FloatingContact() {
                 const data = await res.json();
 
                 setContact({
-                    phone: data?.phone || "0000000000",
+                    phone: data?.mobile || "0000000000",
                     whatsapp: data?.whatsapp || "0000000000",
                 });
 
@@ -67,7 +67,7 @@ export default function FloatingContact() {
 
             {/* 🔥 Call */}
             <a
-                href={`tel:+${contact.phone}`}
+                href={`tel:+${contact.mobile}`}
                 className="w-12 h-12 flex items-center justify-center rounded-full bg-cyan-300 text-[#0a192f] shadow-lg hover:scale-110 transition"
             >
                 <FiPhone size={20} />

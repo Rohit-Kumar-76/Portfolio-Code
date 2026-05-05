@@ -26,6 +26,7 @@ export default function ProjectsPage() {
         totalDays: "",
         status: "pending",
         projectType: "Starter",
+        payment: "",
     });
 
     // 🔥 FETCH
@@ -119,6 +120,8 @@ export default function ProjectsPage() {
             totalDays: project.totalDays || "",
             status: project.status || "pending",
             projectType: project.projectType || "Starter",
+            payment: project.payment || "",
+
         });
 
         setEditId(project._id);
@@ -135,6 +138,8 @@ export default function ProjectsPage() {
             totalDays: "",
             status: "pending",
             projectType: "Starter",
+            payment: "",
+
         });
     };
 
@@ -195,6 +200,8 @@ export default function ProjectsPage() {
                             <th className="p-3">Progress</th>
                             <th className="p-3">Status</th>
                             <th className="p-3">Type</th>
+                            <th className="p-3">Payment</th>
+
                             <th className="p-3">Action</th>
                         </tr>
                     </thead>
@@ -231,6 +238,8 @@ export default function ProjectsPage() {
 
                                     <td className="capitalize">{p.status}</td>
                                     <td className="capitalize">{p.projectType}</td>
+                                    <td className="capitalize">{p.payment}</td>
+
 
                                     <td>
                                         <button
@@ -310,6 +319,7 @@ export default function ProjectsPage() {
                             <Input name="developerName" value={form.developerName} onChange={handleChange} placeholder="Developer Name" />
 
                             <Input type="number" name="totalDays" value={form.totalDays} onChange={handleChange} placeholder="Total Days" />
+                            <Input type="number" name="payment" value={form.payment} onChange={handleChange} placeholder="Payment" />
 
                             <Select name="status" value={form.status} onChange={handleChange}>
                                 <option value="pending">Pending</option>

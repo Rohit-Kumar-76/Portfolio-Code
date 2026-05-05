@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 const Logo = () => {
@@ -13,9 +14,11 @@ const Logo = () => {
                         <div className="flex items-center gap-2 ">
 
 
-                            <img
+                            <Image
+                                width={40}
+                                height={40}
                                 src="/logo-rm.png"
-                                alt="logo"
+                                alt="TrioScript logo"
                                 className=" h-8"
                             />
 

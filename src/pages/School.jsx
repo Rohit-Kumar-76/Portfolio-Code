@@ -38,7 +38,7 @@ export default function SchoolWebsite() {
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/school.svg" className="w-[320px]" />
+                        <Image width={400} height={400} alt="School website by TrioScript" src="/illustration/school.svg" className="w-[320px]" />
                     </div>
                 </div>
 

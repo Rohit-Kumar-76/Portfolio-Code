@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
     FaCheckCircle,
     FaUser,
@@ -37,7 +38,7 @@ export default function CustomWebApp() {
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/app.svg" className="w-[320px]" />
+                        <Image width={400} height={400} alt="Custom website by trioscript" src="/illustration/app.svg" className="w-[320px]" />
                     </div>
                 </div>
 

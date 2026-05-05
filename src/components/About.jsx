@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaRocket, FaBullseye, FaUsers } from "react-icons/fa";
 import TechStack from "./TechStack";
+import Image from "next/image";
 
 /* 🔥 Scroll Hook */
 function useInView() {
@@ -76,10 +77,13 @@ export default function About() {
                     <div className="flex justify-center relative">
                         <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                        <img
+                        <Image
                             src="/illustration/teams.svg"
-                            alt="about"
-                            className="w-[80%] max-w-md relative z-10"
+                            alt="team collaboration illustration"
+                            width={500}
+                            height={500}
+                            className="w-[80%] max-w-md h-auto relative z-10"
+                            priority
                         />
                     </div>
                 </div>

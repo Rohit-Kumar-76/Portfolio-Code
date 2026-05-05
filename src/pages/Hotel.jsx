@@ -1,16 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import {
     FaCheckCircle,
     FaUser,
     FaUserCog,
     FaLaptopCode,
-    FaUtensils,
+    FaHotel,
     FaBullseye,
     FaArrowRight,
 } from "react-icons/fa";
 
-export default function CafeWebsite() {
+export default function HotelWebsite() {
     return (
         <section className="bg-[#0a192f] text-white py-24">
 
@@ -20,58 +21,58 @@ export default function CafeWebsite() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
-                            Cafe / Restaurant Website
+                            Hotel Website
                         </h1>
 
                         <p className="text-gray-400 mb-4">
-                            A modern website designed for cafes and restaurants to showcase menu,
-                            attract customers, and increase bookings.
+                            A modern hotel website designed to showcase rooms, attract guests,
+                            and enable direct online bookings.
                         </p>
 
                         <p className="text-gray-400 mb-6">
-                            Perfect for cafes, restaurants, hotels, and food businesses looking
-                            to build a strong online presence.
+                            Perfect for hotels, resorts, lodges, and hospitality businesses
+                            looking to increase bookings and online visibility.
                         </p>
 
 
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/cafe.svg" className="w-[320px]" />
+                        <Image width={400} height={400} alt="Hotels website by TrioScript" src="/illustration/hotel.svg" className="w-[320px]" />
                     </div>
                 </div>
 
                 {/* 🔥 PROBLEM + SOLUTION */}
                 <div className="grid md:grid-cols-2 gap-10">
                     <Box title="Problem" icon={<FaBullseye />}>
-                        Many cafes struggle to attract customers online due to lack of digital presence,
-                        outdated menus, and no online booking system.
+                        Many hotels rely on third-party platforms and lose customers due to lack
+                        of direct booking systems and poor online presence.
                     </Box>
 
                     <Box title="Solution" icon={<FaBullseye />}>
-                        We create modern cafe websites with digital menus, booking features,
-                        and engaging design to attract more customers.
+                        We build hotel websites with direct booking systems, room showcase,
+                        and premium design to increase direct reservations.
                     </Box>
                 </div>
 
                 {/* 🔥 FEATURES */}
                 <Section title="Key Features">
                     <Grid>
-                        <Feature text="Digital menu showcase" />
-                        <Feature text="Online table booking system" />
-                        <Feature text="Image gallery for food & ambience" />
+                        <Feature text="Room listing with details & pricing" />
+                        <Feature text="Online booking system" />
+                        <Feature text="Photo gallery (rooms & amenities)" />
                         <Feature text="Mobile-friendly design" />
                         <Feature text="Google Maps integration" />
-                        <Feature text="Fast loading performance" />
+                        <Feature text="Fast loading & SEO optimized" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 PAGES STRUCTURE */}
                 <Section title="Website Pages">
                     <Grid>
-                        <Feature text="Home Page (Menu highlights + CTA)" />
-                        <Feature text="Menu Page (Food & pricing)" />
-                        <Feature text="Gallery Page (Food & ambience)" />
+                        <Feature text="Home Page (Rooms + Offers)" />
+                        <Feature text="Rooms Page (Details & pricing)" />
+                        <Feature text="Gallery Page" />
                         <Feature text="Booking Page" />
                         <Feature text="Contact Page" />
                         <Feature text="Reviews / Testimonials" />
@@ -81,36 +82,36 @@ export default function CafeWebsite() {
                 {/* 🔥 USER FLOW */}
                 <Section title="User Journey" icon={<FaUser />}>
                     <ul className="space-y-3 text-gray-300">
-                        <li>1. User visits cafe website</li>
-                        <li>2. Checks menu and pricing</li>
-                        <li>3. Views gallery and ambience</li>
-                        <li>4. Selects table / booking option</li>
-                        <li>5. Confirms booking</li>
-                        <li>6. Visits cafe</li>
+                        <li>1. User visits hotel website</li>
+                        <li>2. Browses rooms and pricing</li>
+                        <li>3. Views photos and amenities</li>
+                        <li>4. Selects dates & room</li>
+                        <li>5. Completes booking</li>
+                        <li>6. Receives confirmation</li>
                     </ul>
                 </Section>
 
                 {/* 🔥 ADMIN PANEL */}
                 <Section title="Admin Panel Features" icon={<FaUserCog />}>
                     <Grid>
-                        <Feature text="Update menu items" />
-                        <Feature text="Manage bookings" />
-                        <Feature text="Upload food images" />
-                        <Feature text="Update timings and offers" />
-                        <Feature text="View customer inquiries" />
-                        <Feature text="Manage reviews" />
+                        <Feature text="Manage room listings" />
+                        <Feature text="Update pricing & availability" />
+                        <Feature text="Handle bookings" />
+                        <Feature text="Upload images & content" />
+                        <Feature text="Manage customer inquiries" />
+                        <Feature text="View booking analytics" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 BENEFITS */}
                 <Section title="Business Benefits">
                     <Grid>
-                        <Feature text="Increase customer footfall" />
-                        <Feature text="Better brand visibility" />
-                        <Feature text="Online booking convenience" />
-                        <Feature text="Professional presentation" />
-                        <Feature text="Boost customer engagement" />
-                        <Feature text="Higher sales conversion" />
+                        <Feature text="Increase direct bookings" />
+                        <Feature text="Reduce dependency on third-party apps" />
+                        <Feature text="Improve brand trust" />
+                        <Feature text="Better customer experience" />
+                        <Feature text="Higher revenue" />
+                        <Feature text="Professional online presence" />
                     </Grid>
                 </Section>
 
@@ -127,7 +128,7 @@ export default function CafeWebsite() {
                 {/* 🔥 CTA */}
                 <div className="text-center">
                     <h3 className="text-xl font-semibold mb-3">
-                        Want a website for your cafe or restaurant?
+                        Want a website for your hotel or resort?
                     </h3>
 
                     <a href="/contact-us" className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer">

@@ -9,6 +9,7 @@ import {
     FaSignOutAlt,
     FaBars,
     FaCommentDots,
+    FaRupeeSign,
 } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
@@ -74,6 +75,7 @@ export default function DashboardClient({ children }) {
                     )}
                     <NavItem icon={<FaEnvelope />} text="Leads" link="/admin/leads" open={open} />
                     <NavItem icon={<FaCommentDots />} text="Enquiry" link="/admin/enquiry" open={open} />
+                    <NavItem icon={<FaRupeeSign />} text="Costs" link="/admin/cost" open={open} />
                     <NavItem icon={<FaCog />} text="Settings" link="/admin/settings" open={open} />
                 </nav>
 

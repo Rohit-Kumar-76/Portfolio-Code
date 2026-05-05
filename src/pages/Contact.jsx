@@ -2,16 +2,17 @@
 
 import { FaPhone, FaEnvelope, FaWhatsapp, FaCheckCircle } from "react-icons/fa";
 import ContactForm from '../components/ContactForm'
+import Image from "next/image";
 
 export default function Contact() {
     return (
         <section className="bg-[#0a192f] text-white py-24">
 
-            <div className="max-w-7xl mx-auto px-6 space-y-20">
+            <div className="max-w-7xl mx-auto lg:px-6 space-y-20">
 
                 {/* 🔥 HEADER */}
                 {/* 🔥 INTRO SECTION */}
-                <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div className="grid md:grid-cols-2 px-6 gap-12 items-center">
 
                     {/* LEFT TEXT */}
                     <div>
@@ -41,9 +42,11 @@ export default function Contact() {
                     <div className="flex justify-center relative">
                         <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                        <img
+                        <Image
+                            width={400}
+                            height={400}
                             src="/illustration/call.svg"
-                            alt="contact"
+                            alt="TrioScript contact"
                             className="w-[80%] max-w-md relative z-10"
                         />
                     </div>
@@ -52,7 +55,7 @@ export default function Contact() {
 
                 <ContactForm />
                 {/* 🔥 CONTACT INFO */}
-                <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div className="grid md:grid-cols-3 gap-6 px-6 text-center">
 
                     <Info icon={<FaPhone />} text="+91 7651893226" />
                     <Info icon={<FaEnvelope />} text="info.trioscript@gmail.com" />
@@ -61,7 +64,7 @@ export default function Contact() {
                 </div>
 
                 {/* 🔥 WHY CONTACT US */}
-                <div className="text-center">
+                <div className="text-center px-6">
                     <h3 className="text-xl font-semibold mb-6">
                         Why Work With Us?
                     </h3>

@@ -1,16 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import {
     FaCheckCircle,
     FaUser,
     FaUserCog,
     FaLaptopCode,
-    FaDumbbell,
+    FaUtensils,
     FaBullseye,
     FaArrowRight,
 } from "react-icons/fa";
 
-export default function GymWebsite() {
+export default function CafeWebsite() {
     return (
         <section className="bg-[#0a192f] text-white py-24">
 
@@ -20,97 +21,97 @@ export default function GymWebsite() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
-                            Gym / Fitness Website
+                            Cafe / Restaurant Website
                         </h1>
 
                         <p className="text-gray-400 mb-4">
-                            A powerful website designed for gyms and fitness centers
-                            to attract members, showcase services, and manage memberships.
+                            A modern website designed for cafes and restaurants to showcase menu,
+                            attract customers, and increase bookings.
                         </p>
 
                         <p className="text-gray-400 mb-6">
-                            Perfect for gyms, personal trainers, and fitness studios
-                            looking to grow their business online.
+                            Perfect for cafes, restaurants, hotels, and food businesses looking
+                            to build a strong online presence.
                         </p>
 
 
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/gym.svg" className="w-[320px]" />
+                        <Image width={400} height={400} alt="Cafe Website by TrioScript" src="/illustration/cafe.svg" className="w-[320px]" />
                     </div>
                 </div>
 
                 {/* 🔥 PROBLEM + SOLUTION */}
                 <div className="grid md:grid-cols-2 gap-10">
                     <Box title="Problem" icon={<FaBullseye />}>
-                        Many gyms struggle to attract new members and manage memberships,
-                        schedules, and trainer information efficiently.
+                        Many cafes struggle to attract customers online due to lack of digital presence,
+                        outdated menus, and no online booking system.
                     </Box>
 
                     <Box title="Solution" icon={<FaBullseye />}>
-                        We build modern fitness websites with membership systems,
-                        class schedules, and engaging design to increase signups.
+                        We create modern cafe websites with digital menus, booking features,
+                        and engaging design to attract more customers.
                     </Box>
                 </div>
 
                 {/* 🔥 FEATURES */}
                 <Section title="Key Features">
                     <Grid>
-                        <Feature text="Membership plans display" />
-                        <Feature text="Online registration system" />
-                        <Feature text="Trainer profiles showcase" />
-                        <Feature text="Workout / class schedule" />
+                        <Feature text="Digital menu showcase" />
+                        <Feature text="Online table booking system" />
+                        <Feature text="Image gallery for food & ambience" />
                         <Feature text="Mobile-friendly design" />
+                        <Feature text="Google Maps integration" />
                         <Feature text="Fast loading performance" />
                     </Grid>
                 </Section>
 
-                {/* 🔥 PAGES */}
+                {/* 🔥 PAGES STRUCTURE */}
                 <Section title="Website Pages">
                     <Grid>
-                        <Feature text="Home Page (Plans + CTA)" />
-                        <Feature text="Membership Plans Page" />
-                        <Feature text="Trainers Page" />
-                        <Feature text="Schedule Page" />
+                        <Feature text="Home Page (Menu highlights + CTA)" />
+                        <Feature text="Menu Page (Food & pricing)" />
+                        <Feature text="Gallery Page (Food & ambience)" />
+                        <Feature text="Booking Page" />
                         <Feature text="Contact Page" />
-                        <Feature text="Transformation / Gallery" />
+                        <Feature text="Reviews / Testimonials" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 USER FLOW */}
                 <Section title="User Journey" icon={<FaUser />}>
                     <ul className="space-y-3 text-gray-300">
-                        <li>1. User visits gym website</li>
-                        <li>2. Checks membership plans</li>
-                        <li>3. Views trainers & facilities</li>
-                        <li>4. Selects plan</li>
-                        <li>5. Registers online</li>
-                        <li>6. Joins gym</li>
+                        <li>1. User visits cafe website</li>
+                        <li>2. Checks menu and pricing</li>
+                        <li>3. Views gallery and ambience</li>
+                        <li>4. Selects table / booking option</li>
+                        <li>5. Confirms booking</li>
+                        <li>6. Visits cafe</li>
                     </ul>
                 </Section>
 
                 {/* 🔥 ADMIN PANEL */}
                 <Section title="Admin Panel Features" icon={<FaUserCog />}>
                     <Grid>
-                        <Feature text="Manage memberships" />
-                        <Feature text="Update plans & pricing" />
-                        <Feature text="Manage trainer profiles" />
-                        <Feature text="Update schedules" />
-                        <Feature text="Track inquiries" />
-                        <Feature text="Manage users" />
+                        <Feature text="Update menu items" />
+                        <Feature text="Manage bookings" />
+                        <Feature text="Upload food images" />
+                        <Feature text="Update timings and offers" />
+                        <Feature text="View customer inquiries" />
+                        <Feature text="Manage reviews" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 BENEFITS */}
                 <Section title="Business Benefits">
                     <Grid>
-                        <Feature text="Increase memberships" />
+                        <Feature text="Increase customer footfall" />
                         <Feature text="Better brand visibility" />
-                        <Feature text="Online registration convenience" />
-                        <Feature text="Professional presence" />
-                        <Feature text="Customer engagement" />
-                        <Feature text="Higher revenue growth" />
+                        <Feature text="Online booking convenience" />
+                        <Feature text="Professional presentation" />
+                        <Feature text="Boost customer engagement" />
+                        <Feature text="Higher sales conversion" />
                     </Grid>
                 </Section>
 
@@ -127,13 +128,10 @@ export default function GymWebsite() {
                 {/* 🔥 CTA */}
                 <div className="text-center">
                     <h3 className="text-xl font-semibold mb-3">
-                        Want a website for your gym or fitness center?
+                        Want a website for your cafe or restaurant?
                     </h3>
 
-                    <a
-                        href="/contact-us"
-                        className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer"
-                    >
+                    <a href="/contact-us" className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer">
                         Start Your Project
                     </a>
                 </div>

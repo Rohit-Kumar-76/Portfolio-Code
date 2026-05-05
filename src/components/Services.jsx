@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
     FaLaptopCode,
@@ -62,9 +63,11 @@ export default function Services() {
                         <div className="relative">
                             <div className="absolute w-[250px] h-[220px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                            <img
+                            <Image
+                                width={400}
+                                height={400}
                                 src="/illustration/2.svg"
-                                alt="illustration"
+                                alt="TrioScript Services illustration"
                                 className="w-[160px] md:w-[220px] relative z-10"
                             />
                         </div>

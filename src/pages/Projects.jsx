@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
 import { useState } from "react";
 import FormModal from "@/components/FormModal";
+import Image from "next/image";
 
 
 
@@ -102,9 +103,11 @@ const Projects = () => {
                     <div className="flex justify-center relative">
                         <div className="absolute w-[250px] h-[250px] bg-cyan-300/10 blur-3xl rounded-full"></div>
 
-                        <img
+                        <Image
+                            width={400}
+                            height={400}
                             src="/illustration/project.svg"
-                            alt="projects"
+                            alt="Project Made by TrioScript "
                             className="w-[80%] max-w-md"
                         />
                     </div>
@@ -121,7 +124,9 @@ const Projects = () => {
 
                             {/* Illustration */}
                             <div className="flex justify-center mb-4">
-                                <img
+                                <Image
+                                    width={400}
+                                    height={400}
                                     src={project.img}
                                     alt={project.title}
                                     className="w-[120px] h-[120px] object-contain"

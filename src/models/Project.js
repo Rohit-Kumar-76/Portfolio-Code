@@ -9,6 +9,8 @@ const ProjectSchema = new mongoose.Schema(
         developerName: { type: String, required: true },
 
         totalDays: { type: Number, required: true },
+        payment: { type: Number },
+        advpayment: { type: Number },
 
         startDate: {
             type: Date,

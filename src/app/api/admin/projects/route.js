@@ -58,6 +58,8 @@ export async function POST(req) {
             totalDays,
             status,
             projectType,
+            payment,
+            advpayment,
         } = body;
 
         // 🔒 validation
@@ -77,6 +79,8 @@ export async function POST(req) {
             totalDays: Number(totalDays),
             status: status || "pending",
             projectType: projectType || "Starter",
+            payment:payment ||0,
+            advpayment:advpayment ||0,
 
         });
 

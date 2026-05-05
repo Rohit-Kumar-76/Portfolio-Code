@@ -1,16 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import {
     FaCheckCircle,
     FaUser,
     FaUserCog,
     FaLaptopCode,
-    FaHotel,
+    FaDumbbell,
     FaBullseye,
     FaArrowRight,
 } from "react-icons/fa";
 
-export default function HotelWebsite() {
+export default function GymWebsite() {
     return (
         <section className="bg-[#0a192f] text-white py-24">
 
@@ -20,97 +21,102 @@ export default function HotelWebsite() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
-                            Hotel Website
+                            Gym / Fitness Website
                         </h1>
 
                         <p className="text-gray-400 mb-4">
-                            A modern hotel website designed to showcase rooms, attract guests,
-                            and enable direct online bookings.
+                            A powerful website designed for gyms and fitness centers
+                            to attract members, showcase services, and manage memberships.
                         </p>
 
                         <p className="text-gray-400 mb-6">
-                            Perfect for hotels, resorts, lodges, and hospitality businesses
-                            looking to increase bookings and online visibility.
+                            Perfect for gyms, personal trainers, and fitness studios
+                            looking to grow their business online.
                         </p>
 
 
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/hotel.svg" className="w-[320px]" />
+                        <Image
+                            width={400}
+                            height={400}
+                            alt="Gym Website By TrioScript"
+                            src="/illustration/gym.svg"
+                            className="w-[320px]" />
                     </div>
                 </div>
 
                 {/* 🔥 PROBLEM + SOLUTION */}
                 <div className="grid md:grid-cols-2 gap-10">
                     <Box title="Problem" icon={<FaBullseye />}>
-                        Many hotels rely on third-party platforms and lose customers due to lack
-                        of direct booking systems and poor online presence.
+                        Many gyms struggle to attract new members and manage memberships,
+                        schedules, and trainer information efficiently.
                     </Box>
 
                     <Box title="Solution" icon={<FaBullseye />}>
-                        We build hotel websites with direct booking systems, room showcase,
-                        and premium design to increase direct reservations.
+                        We build modern fitness websites with membership systems,
+                        class schedules, and engaging design to increase signups.
                     </Box>
                 </div>
 
                 {/* 🔥 FEATURES */}
                 <Section title="Key Features">
                     <Grid>
-                        <Feature text="Room listing with details & pricing" />
-                        <Feature text="Online booking system" />
-                        <Feature text="Photo gallery (rooms & amenities)" />
+                        <Feature text="Membership plans display" />
+                        <Feature text="Online registration system" />
+                        <Feature text="Trainer profiles showcase" />
+                        <Feature text="Workout / class schedule" />
                         <Feature text="Mobile-friendly design" />
-                        <Feature text="Google Maps integration" />
-                        <Feature text="Fast loading & SEO optimized" />
+                        <Feature text="Fast loading performance" />
                     </Grid>
                 </Section>
 
-                {/* 🔥 PAGES STRUCTURE */}
+                {/* 🔥 PAGES */}
                 <Section title="Website Pages">
                     <Grid>
-                        <Feature text="Home Page (Rooms + Offers)" />
-                        <Feature text="Rooms Page (Details & pricing)" />
-                        <Feature text="Gallery Page" />
-                        <Feature text="Booking Page" />
+                        <Feature text="Home Page (Plans + CTA)" />
+                        <Feature text="Membership Plans Page" />
+                        <Feature text="Trainers Page" />
+                        <Feature text="Schedule Page" />
                         <Feature text="Contact Page" />
-                        <Feature text="Reviews / Testimonials" />
+                        <Feature text="Transformation / Gallery" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 USER FLOW */}
                 <Section title="User Journey" icon={<FaUser />}>
                     <ul className="space-y-3 text-gray-300">
-                        <li>1. User visits hotel website</li>
-                        <li>2. Browses rooms and pricing</li>
-                        <li>3. Views photos and amenities</li>
-                        <li>4. Selects dates & room</li>
-                        <li>5. Completes booking</li>
-                        <li>6. Receives confirmation</li>
+                        <li>1. User visits gym website</li>
+                        <li>2. Checks membership plans</li>
+                        <li>3. Views trainers & facilities</li>
+                        <li>4. Selects plan</li>
+                        <li>5. Registers online</li>
+                        <li>6. Joins gym</li>
                     </ul>
                 </Section>
 
                 {/* 🔥 ADMIN PANEL */}
                 <Section title="Admin Panel Features" icon={<FaUserCog />}>
                     <Grid>
-                        <Feature text="Manage room listings" />
-                        <Feature text="Update pricing & availability" />
-                        <Feature text="Handle bookings" />
-                        <Feature text="Upload images & content" />
-                        <Feature text="Manage customer inquiries" />
-                        <Feature text="View booking analytics" />
+                        <Feature text="Manage memberships" />
+                        <Feature text="Update plans & pricing" />
+                        <Feature text="Manage trainer profiles" />
+                        <Feature text="Update schedules" />
+                        <Feature text="Track inquiries" />
+                        <Feature text="Manage users" />
                     </Grid>
                 </Section>
 
                 {/* 🔥 BENEFITS */}
                 <Section title="Business Benefits">
                     <Grid>
-                        <Feature text="Increase direct bookings" />
-                        <Feature text="Reduce dependency on third-party apps" />
-                        <Feature text="Improve brand trust" />
-                        <Feature text="Better customer experience" />
-                        <Feature text="Higher revenue" />
-                        <Feature text="Professional online presence" />
+                        <Feature text="Increase memberships" />
+                        <Feature text="Better brand visibility" />
+                        <Feature text="Online registration convenience" />
+                        <Feature text="Professional presence" />
+                        <Feature text="Customer engagement" />
+                        <Feature text="Higher revenue growth" />
                     </Grid>
                 </Section>
 
@@ -127,11 +133,14 @@ export default function HotelWebsite() {
                 {/* 🔥 CTA */}
                 <div className="text-center">
                     <h3 className="text-xl font-semibold mb-3">
-                        Want a website for your hotel or resort?
+                        Want a website for your gym or fitness center?
                     </h3>
 
-                    <a href="/contact-us" className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer">
-                        Start Your Project
+                    <a
+                        href="/contact-us"
+                        className="px-6 py-2 bg-cyan-300 text-[#0a192f] rounded hover:scale-105 transition cursor-pointer"
+                    >
+                        Contact Us
                     </a>
                 </div>
 

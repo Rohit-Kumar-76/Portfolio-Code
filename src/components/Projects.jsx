@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import FormModal from "@/components/FormModal";
+import Image from "next/image";
 
 export default function Projects() {
     const [open, setOpen] = useState(false);
@@ -41,13 +42,13 @@ export default function Projects() {
     ];
 
     return (
-        <section className="bg-[#0a192f] text-white py-24">
+        <section className="bg-[#0a192f] text-white py-10">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Heading */}
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-cyan-300">
-                        My Projects
+                        Our Services
                     </h2>
                     <p className="text-gray-400 mt-3">
                         Solutions we provide for different businesses
@@ -64,11 +65,13 @@ export default function Projects() {
                         >
 
                             {/* ✅ FIXED IMAGE */}
-                            <div className="h-[180px] flex items-center justify-center bg-[#0a192f]">
-                                <img
+                            <div className="relative h-[180px] flex items-center justify-center bg-[#0a192f] overflow-hidden">
+                                <Image
                                     src={project.image}
                                     alt={project.title}
-                                    className="max-h-full max-w-full object-contain"
+                                    fill
+                                    className="object-contain p-2"
+                                    sizes="(max-width: 768px) 100vw, 300px"
                                 />
                             </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { FaUser, FaEnvelope, FaCommentDots, FaPaperPlane, FaPhone } from "react-icons/fa";
 
@@ -58,22 +59,25 @@ export default function Contact() {
         <section className="bg-[#0a192f] text-white py-24 relative overflow-hidden">
 
             {/* Glow */}
-            <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div>
-            <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div>
+            {/* <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div> */}
+            {/* <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-cyan-300/10 blur-3xl rounded-full"></div> */}
 
             <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center relative z-10">
 
                 {/* Illustration */}
                 <div className="flex justify-center">
-                    <img
+                    <Image
                         src="/illustration/bussiness.svg"
-                        alt="contact"
-                        className="w-[80%] max-w-md"
+                        alt="business illustration"
+                        width={500}
+                        height={500}
+                        className="w-[80%] max-w-md h-auto"
+                        priority
                     />
                 </div>
 
                 {/* Form */}
-                <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 shadow-xl">
+                <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-6 shadow-xl">
 
                     {success ? (
                         <div className="text-center space-y-4 py-10">

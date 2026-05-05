@@ -155,7 +155,7 @@ export default function SettingsPage() {
 
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
                         <Field label="Offer %" value={settings.offerPercentage} name="offerPercentage" onChange={handleChange} editMode={editMode} />
-                        <Field label="Total Balance" value={settings.totalBalance} name="totalBalance" onChange={handleChange} editMode={editMode} />
+                        {/* <Field label="Total Balance" disabled={disabled} value={settings.totalBalance} name="totalBalance" onChange={handleChange} editMode={editMode} /> */}
                     </div>
                 </div>
 
@@ -205,6 +205,7 @@ function Field({ label, value, name, onChange, editMode }) {
                     name={name}
                     value={value || ""}
                     onChange={onChange}
+
                     className="w-full bg-[#0a192f] p-2 rounded outline-none"
                 />
             ) : (

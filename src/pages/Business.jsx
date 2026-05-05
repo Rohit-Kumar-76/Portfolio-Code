@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
     FaCheckCircle,
     FaUser,
@@ -39,7 +40,12 @@ export default function BusinessWebsite() {
                     </div>
 
                     <div className="flex justify-center">
-                        <img src="/illustration/bussiness.svg" className="w-[320px]" />
+                        <Image
+                            width={400}
+                            height={400}
+                            src="/illustration/bussiness.svg"
+                            className="w-[320px]"
+                            alt="Business Image" />
                     </div>
                 </div>
 
